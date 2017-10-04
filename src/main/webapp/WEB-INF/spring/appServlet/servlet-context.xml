@@ -23,6 +23,7 @@
 	
 	<context:component-scan base-package="com.usyd.gscp" />
 	
+	<resources mapping="/resources/**" location="/resources/" />
 	
 	
 </beans:beans>
