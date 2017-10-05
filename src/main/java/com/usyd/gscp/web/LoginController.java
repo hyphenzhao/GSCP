@@ -15,7 +15,7 @@ import com.usyd.gscp.service.UserService;
 public class LoginController {
 	
 	@Autowired
-	private UserService userSevice; 
+	private UserService userService; 
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String welcome(Locale locale, Model model) {
@@ -27,8 +27,10 @@ public class LoginController {
 	public String login(Locale locale, Model model,
 			@RequestParam("account") String account,
 			@RequestParam("password") String password) {
-		
-		model.addAttribute("message", "POST works");
+		if(userService.authenticateUser(account, password))
+			model.addAttribute("message", "Login successfully!");
+		else
+			model.addAttribute("message", "Login failed!");
 		return "home";
 	}
 }

@@ -19,9 +19,7 @@ public class UserService {
     private UserDao userDao;
     
     public boolean authenticateUser(String account, String password) {
-    	
-    	
-    	return false;
+    	return userDao.checkLogin(account, hashCode(password));
     }
     
     public void registerUser(User user) {
