@@ -18,11 +18,17 @@ public class UserService {
     @Autowired
     private UserDao userDao;
     
+    public boolean authenticateUser(String account, String password) {
+    	
+    	
+    	return false;
+    }
+    
     public void registerUser(User user) {
     	user.setPassword(
     			hashCode(user.getPassword())
     		);
-        userDao.savePerson(user);
+        userDao.saveUser(user);
     }
     
     private String hashCode(String input) {

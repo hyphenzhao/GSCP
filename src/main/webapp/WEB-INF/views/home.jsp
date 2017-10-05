@@ -8,7 +8,10 @@
 <h1>
 	Hello world!  
 </h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+<p>
+Temporary page which shows that your previous code works successfully!<br> 
+Congratulation!<br>
+The output message is: ${message}
+</p>
 </body>
 </html>

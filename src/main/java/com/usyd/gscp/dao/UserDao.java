@@ -21,7 +21,7 @@ public class UserDao {
         this.sessionFactory = sessionFactory;
     }
 
-    public void savePerson(User user) {
+    public void saveUser(User user) {
         sessionFactory.getCurrentSession().save(user);
     }
 }

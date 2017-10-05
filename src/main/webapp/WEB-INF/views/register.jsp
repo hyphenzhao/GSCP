@@ -61,6 +61,7 @@
     						<input type="input" class="form-control" id="phone" name="phone" placeholder="Phone" required />
     					</div>
    	 				</div>
+   	 				<a href="./index" class="btn btn-secondary">Back</a>
     				<button type="submit" class="btn btn-primary"> Sign Up Now!</button>
     			</form>
   			</div>
