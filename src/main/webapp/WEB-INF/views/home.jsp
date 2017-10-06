@@ -12,6 +12,7 @@
 Temporary page which shows that your previous code works successfully!<br> 
 Congratulation!<br>
 The output message is: ${message}
+The user id is: ${user_id}
 </p>
 </body>
 </html>

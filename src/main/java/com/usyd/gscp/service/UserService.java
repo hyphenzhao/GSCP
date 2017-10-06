@@ -18,7 +18,15 @@ public class UserService {
     @Autowired
     private UserDao userDao;
     
-    public boolean authenticateUser(String account, String password) {
+    public User getUserById(int id) {
+    	return userDao.getUserById(id);
+    }
+    
+    public User getUserById(String id) {
+    	return userDao.getUserById(Integer.parseInt(id));
+    }
+    
+    public int authenticateUser(String account, String password) {
     	return userDao.checkLogin(account, hashCode(password));
     }
     
@@ -27,6 +35,10 @@ public class UserService {
     			hashCode(user.getPassword())
     		);
         userDao.saveUser(user);
+    }
+    
+    public void updateUser(User user) {
+    	userDao.updateUser(user);
     }
     
     private String hashCode(String input) {

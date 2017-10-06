@@ -1,5 +1,6 @@
 package com.usyd.gscp.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -31,10 +32,26 @@ public class UserDao {
         sessionFactory.getCurrentSession().save(user);
     }
     
-    public boolean checkLogin(String account, String password){
+    public void updateUser(User user) {
+    	sessionFactory.getCurrentSession().update(user);
+    }
+    
+    public User getUserById(int id) {
+    	Session session = sessionFactory.openSession();
+    	try{
+    		User user =  (User) session.get(User.class, id);
+    		return user;
+    	} catch (Exception e) {
+    		System.out.println("UserDao.java: Fail to get a user by its id.");
+    	}
+    	
+    	return null;
+    }
+    
+    public int checkLogin(String account, String password){
+    	
 			System.out.println("In Check login");
 			Session session = sessionFactory.openSession();
-			boolean userFound = false;
 			Criteria criteria = session.createCriteria(User.class);
 			criteria.add(
 					Restrictions.and(
@@ -48,10 +65,12 @@ public class UserDao {
 			List list = criteria.list();
 
 			if ((list != null) && (list.size() > 0)) {
-				userFound= true;
+				ArrayList<User> userList = (ArrayList<User>) list;
+				return userList.get(0).getId();
+				
 			}
 
 			session.close();
-			return userFound;              
+			return -1;              
     }
 }

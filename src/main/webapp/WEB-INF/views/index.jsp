@@ -15,6 +15,11 @@
   			<div class="card-body">
     			<h4 class="card-title">Welcome the GSCP!</h4>
     			<h6 class="card-subtitle mb-2 text-muted">Global Student Communication Platform</h6>
+    			<c:if test="${not empty message}" >
+    				<div class="alert alert-danger" role="alert">
+						${message}
+					</div>
+				</c:if>
     			<form action="./index" method="POST" role="form" data-toggle="validator">
     				<div class="form-group row">
    	 					<label for="userName" class="col-sm-2 col-form-label">Account</label>
