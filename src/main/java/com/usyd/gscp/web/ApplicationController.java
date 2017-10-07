@@ -1,5 +1,6 @@
 package com.usyd.gscp.web;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.usyd.gscp.domain.University;
 import com.usyd.gscp.domain.User;
+import com.usyd.gscp.service.UniversityService;
 import com.usyd.gscp.service.UserRoleContext;
 import com.usyd.gscp.service.UserService;
 
@@ -21,6 +24,9 @@ public class ApplicationController {
 	
 	@Autowired
 	private UserService userService; 
+	
+	@Autowired
+	private UniversityService uniService;
 	
 	@RequestMapping(value = "/application/home", method = RequestMethod.GET)
 	public String welcome(Locale locale, Model model,
@@ -65,7 +71,11 @@ public class ApplicationController {
 	}
 	
 	@RequestMapping(value = "/application/student/new", method = RequestMethod.GET)
-	public String newApplicaitionView() {
+	public String newApplicaitionView(Locale locale, Model model) {
+		ArrayList<University> unis = uniService.getAllUnis();
+		
+		model.addAttribute("universities", unis);
+		
 		return "application-student-new";
 	}
 }

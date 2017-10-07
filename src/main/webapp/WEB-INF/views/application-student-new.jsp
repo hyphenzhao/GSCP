@@ -8,6 +8,7 @@
 		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
 		<script src="<c:url value="/resources/js/validator.min.js" />"></script>
+		<script src="<c:url value="/resources/js/new-application.js" />"></script>
 	</head>
 	<body>
 	<div class="container">
@@ -56,13 +57,12 @@
 				</nav>
 				<form action="/gscp/application/student/new" method="POST">
 				
-				<!-- ++++++++++++++++++++++++++++++FORM START++++++++++++++++++++++++++++++ -->
-				
+				<!-- ++++++++++++++++++++++++++++++FORM START++++++++++++++++++++++++++++++ -->		
 <div id="accordion" role="tablist">
 <div class="card">
     <div class="card-header" role="tab" id="headingOne">
       <h5 class="mb-0">
-        <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <a data-toggle="collapse" id="university_selection" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           University
         </a>
       </h5>
@@ -72,25 +72,19 @@
       <div class="card-body">
         <div class="row">
         <!-- ++++++++++++++++++++++++++++++Content One++++++++++++++++++++++++++++++ -->
-<div class="col-4">
-    <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
-      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
-    </div>
-  </div>
-  <div class="col-8">
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
-      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
-    </div>
+        <c:forEach items="${universities}" var="uni">
+<div class="card" style="width: 20rem;">
+  <img class="img-rounded" src="<c:url value="/resources/images/${uni.image}" />" alt="${uni.name} Images">
+  <div class="card-body">
+    <h4 class="card-title">${uni.name}</h4>
+    <p class="card-text">${uni.description}<a href="${uni.url}">More...</a></p>
+    <button type="button" class="btn btn-info" onclick="selectUniversity('${uni.id}','${uni.name}')">Select</button>
   </div>
 </div>
+		</c:forEach>
 		<!-- ++++++++++++++++++++++++++++++Content One++++++++++++++++++++++++++++++ -->
       </div>
+      <input id="university_selection_value" type="hidden" name="university" />
     </div>
   </div>
   <div class="card">
