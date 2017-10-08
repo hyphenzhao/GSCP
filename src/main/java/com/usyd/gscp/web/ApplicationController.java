@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.usyd.gscp.domain.Degree;
 import com.usyd.gscp.domain.University;
 import com.usyd.gscp.domain.User;
+import com.usyd.gscp.service.DegreeService;
 import com.usyd.gscp.service.UniversityService;
 import com.usyd.gscp.service.UserRoleContext;
 import com.usyd.gscp.service.UserService;
@@ -27,6 +29,9 @@ public class ApplicationController {
 	
 	@Autowired
 	private UniversityService uniService;
+	
+	@Autowired
+	private DegreeService degreeService;
 	
 	@RequestMapping(value = "/application/home", method = RequestMethod.GET)
 	public String welcome(Locale locale, Model model,
@@ -73,8 +78,10 @@ public class ApplicationController {
 	@RequestMapping(value = "/application/student/new", method = RequestMethod.GET)
 	public String newApplicaitionView(Locale locale, Model model) {
 		ArrayList<University> unis = uniService.getAllUnis();
+		ArrayList<Degree> degrees = degreeService.getAllDegrees();
 		
 		model.addAttribute("universities", unis);
+		model.addAttribute("degrees", degrees);
 		
 		return "application-student-new";
 	}

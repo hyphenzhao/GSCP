@@ -73,31 +73,48 @@
         <div class="row">
         <!-- ++++++++++++++++++++++++++++++Content One++++++++++++++++++++++++++++++ -->
         <c:forEach items="${universities}" var="uni">
-<div class="card" style="width: 20rem;">
-  <img class="img-rounded" src="<c:url value="/resources/images/${uni.image}" />" alt="${uni.name} Images">
-  <div class="card-body">
-    <h4 class="card-title">${uni.name}</h4>
-    <p class="card-text">${uni.description}<a href="${uni.url}">More...</a></p>
-    <button type="button" class="btn btn-info" onclick="selectUniversity('${uni.id}','${uni.name}')">Select</button>
-  </div>
-</div>
+			<div class="card" style="width: 20rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${uni.image}" />" alt="${uni.name} Images">
+  				<div class="card-body">
+    				<h4 class="card-title">${uni.name}</h4>
+    				<p class="card-text">${uni.description}<a href="${uni.url}">More...</a></p>
+    				<button type="button" class="btn btn-info" onclick="selectUniversity('${uni.id}','${uni.name}')">Select</button>
+  				</div>
+			</div>
 		</c:forEach>
 		<!-- ++++++++++++++++++++++++++++++Content One++++++++++++++++++++++++++++++ -->
       </div>
       <input id="university_selection_value" type="hidden" name="university" />
     </div>
   </div>
+</div>
   <div class="card">
     <div class="card-header" role="tab" id="headingTwo">
       <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="degree_selection">
           Degree
         </a>
       </h5>
     </div>
     <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      <div class="row">
+		<c:forEach items="${degrees}" var="degree">
+			<c:forEach items="${universities}" var="uni">
+				<c:if test="${degree.uniId == uni.id}">			
+					<div class="card degree-selection" style="width: 20rem;" name="${uni.name}">
+  						<img class="img-rounded" src="<c:url value="/resources/images/${uni.image}" />" alt="${uni.name} Images">
+  						<div class="card-body">
+    						<h4 class="card-title">${degree.name}</h4>
+    						<p class="card-text">${degree.description}<a href="${uni.url}">More...</a></p>
+    						<button type="button" class="btn btn-info" onclick="selectDegree('${degree.id}','${degree.name}')">Select</button>
+  						</div>
+					</div>
+				</c:if>
+			</c:forEach>
+		</c:forEach>
+	  </div>
+	  <input id="degree_selection_value" type="hidden" name="degree" /> 
       </div>
     </div>
   </div>

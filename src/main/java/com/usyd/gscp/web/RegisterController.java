@@ -42,6 +42,6 @@ public class RegisterController {
 		
 		userSevice.registerUser(newUser);
 		
-		return "redirect:/";
+		return "redirect:/profile";
 	}
 }
