@@ -1,6 +1,7 @@
 package com.usyd.gscp.service;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -24,6 +25,19 @@ public class UserService {
     
     public User getUserById(String id) {
     	return userDao.getUserById(Integer.parseInt(id));
+    }
+    
+    public ArrayList<User> getUsersByRole(int role) {
+    	ArrayList<User> result = new ArrayList<User>();
+    	ArrayList<User> allUsers = (ArrayList<User>) userDao.getAllUsers();
+    	
+    	for(int i = 0; i < allUsers.size(); i++) {
+    		if((allUsers.get(i).getRole() & role) != 0) {
+    			result.add(allUsers.get(i));
+    		}
+    	}
+    	
+    	return result;
     }
     
     public int authenticateUser(String account, String password) {

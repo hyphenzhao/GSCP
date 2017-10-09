@@ -27,7 +27,7 @@ public class UniversityDao {
     public University getUniById(int id) {
     	Session session = sessionFactory.openSession();
     	try{
-    		University uni =(University) session.get(University.class, id);
+    		University uni = (University) session.get(University.class, id);
     		return uni;
     	} catch(Exception e) {
     		System.out.println("UniversityDao.java: Fail to get a university by its id.");

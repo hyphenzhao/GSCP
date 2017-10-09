@@ -11,8 +11,15 @@ function selectUniversity(id, name) {
 	}
 	$("#collapseTwo").collapse('toggle');
 }
+
 function selectDegree(id, name) {
 	document.getElementById("degree_selection").innerHTML = "Degree: " + name;
 	document.getElementById("degree_selection_value").value = id;
 	$("#collapseThree").collapse('toggle');
+}
+
+function selectAgent(id, name) {
+	document.getElementById("agent_selection").innerHTML = "Agent: " + name;
+	document.getElementById("agent_selection_value").value = id;
+	$("#collapseFour").collapse('toggle');
 }

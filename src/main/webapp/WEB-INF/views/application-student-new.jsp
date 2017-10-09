@@ -55,7 +55,7 @@
 					<a class="nav-item nav-link active" href="/gscp/application/student/new">New Applications</a>
 					<a class="nav-item nav-link" href="/gscp/application/student/history">My Applications</a>
 				</nav>
-				<form action="/gscp/application/student/new" method="POST">
+				<form action="/gscp/application/student/new" method="POST" enctype="multipart/form-data">
 				
 				<!-- ++++++++++++++++++++++++++++++FORM START++++++++++++++++++++++++++++++ -->		
 <div id="accordion" role="tablist">
@@ -121,15 +121,28 @@
   <div class="card">
     <div class="card-header" role="tab" id="headingThree">
       <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="agent_selection">
           Agent
         </a>
       </h5>
     </div>
     <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      	<c:forEach items="${agents}" var="agent">
+			<div class="card" style="width: 20rem;">
+  				<img class="img-rounded" width="256" src="<c:url value="/resources/images/photo.png" />" alt="Agent Profile Images">
+  				<div class="card-body">
+    				<h4 class="card-title">${agent.first} ${agent.last}</h4>
+    				<p class="card-text">
+    					Email: ${agent.email} <br>
+    					Phone: ${agent.phone}
+    				</p>
+    				<button type="button" class="btn btn-info" onclick="selectAgent('${agent.id}','${agent.first} ${agent.last}')">Select</button>
+  				</div>
+			</div>
+		</c:forEach>
       </div>
+       <input id="agent_selection_value" type="hidden" name="agent" /> 
     </div>
   </div>
   <div class="card">
@@ -142,7 +155,23 @@
     </div>
     <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      	<div class="form-group row">
+   	 		<label for="title" class="col-sm-2 col-form-label">Title</label>
+   	 		<div class="col-sm-8">
+    			<input type="input" class="form-control" id="title" name="title" placeholder="Input your application title here..." required />
+    		</div>
+   	 	</div>
+      	<div class="form-group row">
+   	 		<label for="content" class="col-sm-2 col-form-label">Content</label>
+   	 		<div class="col-sm-8">
+   	 			<textarea class="form-control" id="content" name="content" rows="15" placeholder="Input your application content here..." required></textarea>
+    		</div>
+   	 	</div>
+   	 	<div class="form-group row">
+   	 		<label for="fileUpload" class="col-sm-2 col-form-label">Attachment: </label>
+   	 		<input type="file" id="fileUpload" name="file" />
+   	 		<button type="submit" class="btn btn-success">Submit</button>
+   	 	</div>
       </div>
     </div>
   </div>

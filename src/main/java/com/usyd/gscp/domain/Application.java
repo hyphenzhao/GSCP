@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "application")
-public class Applicantion {
+public class Application {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +30,17 @@ public class Applicantion {
 	
 	@Column(name = "content", columnDefinition="TEXT")
 	private String content;
+	
+	@Column(name = "status")
+	private int status;
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	public int getId() {
 		return id;

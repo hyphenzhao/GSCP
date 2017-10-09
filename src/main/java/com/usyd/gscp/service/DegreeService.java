@@ -12,6 +12,7 @@ import com.usyd.gscp.domain.Degree;
 @Service(value = "degreeService")
 @Transactional
 public class DegreeService {
+	
 	@Autowired
 	private DegreeDao degreeDao;
 	

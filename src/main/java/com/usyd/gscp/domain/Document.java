@@ -23,15 +23,15 @@ public class Document {
 	@Column(name = "path")
 	private String path;
 	
-	@JoinColumn(table="user", name="id")
-	private int studentId;
+	@JoinColumn(table="application", name="id")
+	private int applicationId;
 
-	public int getStudentId() {
-		return studentId;
+	public int getApplicationId() {
+		return applicationId;
 	}
 
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
+	public void setApplicationId(int applicationId) {
+		this.applicationId = applicationId;
 	}
 
 	public int getId() {

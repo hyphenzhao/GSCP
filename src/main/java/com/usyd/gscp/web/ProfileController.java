@@ -20,22 +20,22 @@ public class ProfileController {
 	public String welcome(Locale locale, Model model,
 			@ModelAttribute("current_user") User user) {
 		String userRole = "";
-		if (((user.getRole() & UserRoleContext.USER_STUDENT) == 0)) {
+		if (((user.getRole() & UserRoleContext.USER_STUDENT) != 0)) {
 			userRole += "Student ";
 		}
-		if (((user.getRole() & UserRoleContext.USER_AGENT) == 0)) {
+		if (((user.getRole() & UserRoleContext.USER_AGENT) != 0)) {
 			userRole += "Agent ";
 		}
-		if (((user.getRole() & UserRoleContext.USER_BUYER) == 0)) {
+		if (((user.getRole() & UserRoleContext.USER_BUYER) != 0)) {
 			userRole += "Buyer ";
 		}
-		if (((user.getRole() & UserRoleContext.USER_SELLER) == 0)) {
+		if (((user.getRole() & UserRoleContext.USER_SELLER) != 0)) {
 			userRole += "Seller ";
 		}
-		if (((user.getRole() & UserRoleContext.USER_LANDLOAD) == 0)) {
+		if (((user.getRole() & UserRoleContext.USER_LANDLOAD) != 0)) {
 			userRole += "Landlord ";
 		}
-		if (((user.getRole() & UserRoleContext.USER_RENTER) == 0)) {
+		if (((user.getRole() & UserRoleContext.USER_RENTER) != 0)) {
 			userRole += "Renter ";
 		}
 		

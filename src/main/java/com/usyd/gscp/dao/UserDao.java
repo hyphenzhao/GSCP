@@ -48,6 +48,16 @@ public class UserDao {
     	return null;
     }
     
+    public List getAllUsers() {
+    	Session session = sessionFactory.openSession();
+    	try{
+    		return session.createCriteria(User.class).list();
+    	} catch(Exception e) {
+    		System.out.println("UserDao.java: Fail to get all users.");
+    	}
+    	return null;
+    }   
+    
     public int checkLogin(String account, String password){
     	
 			System.out.println("In Check login");
