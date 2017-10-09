@@ -1,14 +1,15 @@
 package com.usyd.gscp.web;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -130,6 +131,43 @@ public class ApplicationController {
 		
 		documentService.createDocument(newDocument, file);
 		
-		return "redirect: /gscp/profile";
+		return "redirect: /gscp/application/student/history";
+	}
+	
+	@RequestMapping(value = "/application/student/history", method = RequestMethod.GET)
+	public String historyApplicationView(Locale locale, Model model,
+			@ModelAttribute("current_user") User user) {
+		ArrayList<Application> currentApplications = applicationService.getApplicationByStudentId(user.getId());
+		ArrayList<University> unis = uniService.getAllUnis();
+		ArrayList<Degree> degrees = degreeService.getAllDegrees();
+		ArrayList<User> agents = userService.getUsersByRole(UserRoleContext.USER_AGENT);
+		
+		Collections.sort(currentApplications, new Comparator<Application>() {
+	        @Override
+	        public int compare(Application app1, Application app2)
+	        {
+	        	int result = -1;
+	        	if(app1.getId() < app2.getId()){
+	        		result = 1;
+	        	}
+	            return  result;
+	        }
+	    });
+		
+		model.addAttribute("applications", currentApplications);
+		model.addAttribute("universities", unis);
+		model.addAttribute("degrees", degrees);
+		model.addAttribute("agents", agents);
+		model.addAttribute("type", "list");
+		
+		return "application-student-history";
+	}
+	
+	@RequestMapping(value = "/application/student/history/{applicationNo}", method = RequestMethod.GET)
+	public String historyApplicationDetail(Locale locale, Model model,
+			@ModelAttribute("current_user") User user,
+			@PathVariable int applicationNo) {
+		model.addAttribute("restful", applicationNo);
+		return "application-student-history";
 	}
 }

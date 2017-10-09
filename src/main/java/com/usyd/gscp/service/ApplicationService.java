@@ -1,5 +1,7 @@
 package com.usyd.gscp.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,5 +18,10 @@ public class ApplicationService {
 	
 	public void uploadApplication(Application application) {
 		applicationDao.saveApplication(application);
+	}
+	
+	public ArrayList<Application> getApplicationByStudentId(int id) {
+		ArrayList<Application> result =(ArrayList<Application>) applicationDao.getApplicationById("studentId", id);
+		return result;
 	}
 }

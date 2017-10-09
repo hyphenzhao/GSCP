@@ -28,21 +28,25 @@ public class UniversityDao {
     	Session session = sessionFactory.openSession();
     	try{
     		University uni = (University) session.get(University.class, id);
+    		session.close();
     		return uni;
     	} catch(Exception e) {
     		System.out.println("UniversityDao.java: Fail to get a university by its id.");
     	}
-    	
+    	session.close();
     	return null;
     }
     
     public List getAllUnis() {
     	Session session = sessionFactory.openSession();
     	try{
-    		return session.createCriteria(University.class).list();
+    		List result = session.createCriteria(University.class).list();
+    		session.close();
+    		return result;
     	} catch(Exception e) {
     		System.out.println("UniversityDao.java: Fail to get all universities.");
     	}
+    	session.close();
     	return null;
     }
 }

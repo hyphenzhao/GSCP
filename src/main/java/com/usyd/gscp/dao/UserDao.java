@@ -40,21 +40,25 @@ public class UserDao {
     	Session session = sessionFactory.openSession();
     	try{
     		User user =  (User) session.get(User.class, id);
+    		session.close();
     		return user;
     	} catch (Exception e) {
     		System.out.println("UserDao.java: Fail to get a user by its id.");
     	}
-    	
+    	session.close();
     	return null;
     }
     
     public List getAllUsers() {
     	Session session = sessionFactory.openSession();
     	try{
-    		return session.createCriteria(User.class).list();
+    		List result = session.createCriteria(User.class).list();
+    		session.close();
+    		return result;
     	} catch(Exception e) {
     		System.out.println("UserDao.java: Fail to get all users.");
     	}
+    	session.close();
     	return null;
     }   
     

@@ -28,21 +28,25 @@ public class DegreeDao {
     	Session session = sessionFactory.openSession();
     	try{
     		Degree degree = (Degree) session.get(Degree.class, id);
+    		session.close();
     		return degree;
     	} catch(Exception e) {
     		System.out.println("DegreeDao.java: Fail to get a Degree by its id.");
     	}
-    	
+    	session.close();
     	return null;
     }
     
     public List getAllDegrees() {
     	Session session = sessionFactory.openSession();
     	try{
-    		return session.createCriteria(Degree.class).list();
+    		List result = session.createCriteria(Degree.class).list();
+    		session.close();
+    		return result;
     	} catch(Exception e) {
     		System.out.println("DegreeDao.java: Fail to get all Degrees.");
     	}
+    	session.close();
     	return null;
     }
 }
