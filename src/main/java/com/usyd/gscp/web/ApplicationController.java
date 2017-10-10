@@ -167,7 +167,31 @@ public class ApplicationController {
 	public String historyApplicationDetail(Locale locale, Model model,
 			@ModelAttribute("current_user") User user,
 			@PathVariable int applicationNo) {
-		model.addAttribute("restful", applicationNo);
+		ArrayList<Application> currentApplications = applicationService.getApplicationByStudentId(user.getId());
+		if(currentApplications.size() == 0)
+			return "redirect: /gscp/application/student/new";
+		
+		Collections.sort(currentApplications, new Comparator<Application>() {
+	        @Override
+	        public int compare(Application app1, Application app2)
+	        {
+	        	int result = -1;
+	        	if(app1.getId() < app2.getId()){
+	        		result = 1;
+	        	}
+	            return  result;
+	        }
+	    });
+		Application cApplication = currentApplications.get(0);
+		Degree cDegree = degreeService.getDegreeById(cApplication.getDegreeId());
+		University cUniversity = uniService.getUniById(cDegree.getUniId());
+		ArrayList<Document> cDocuments = documentService.getDocumentsByAppId(cApplication.getId());
+		
+		model.addAttribute("university", cUniversity);
+		model.addAttribute("degree", cDegree);
+		model.addAttribute("application", cApplication);
+		model.addAttribute("documents", cDocuments);
+		
 		return "application-student-history";
 	}
 }

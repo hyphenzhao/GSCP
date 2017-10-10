@@ -16,11 +16,11 @@ public class DegreeService {
 	@Autowired
 	private DegreeDao degreeDao;
 	
-	public Degree getUniById(int id) {
+	public Degree getDegreeById(int id) {
     	return degreeDao.getDegreeById(id);
     }
     
-    public Degree getUniById(String id) {
+    public Degree getDegreeById(String id) {
     	return degreeDao.getDegreeById(Integer.parseInt(id));
     }
     

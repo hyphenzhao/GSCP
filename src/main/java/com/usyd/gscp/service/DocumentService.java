@@ -1,5 +1,6 @@
 package com.usyd.gscp.service;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.apache.commons.io.FilenameUtils;
@@ -20,6 +21,11 @@ public class DocumentService {
 	
 	@Autowired
 	private FileStorageService storageService;
+	
+	public ArrayList<Document> getDocumentsByAppId(int id) {
+		ArrayList<Document> documents = (ArrayList<Document>)documentDao.getDocumentsByAppId(id);
+		return documents;
+	}
 	
 	public void createDocument(Document document, MultipartFile file) {
 		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
