@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "House")
+@Table(name = "house")
 public class House {
 	@Id
 	@Column(name="id")
@@ -30,6 +30,17 @@ public class House {
 	@Column(name = "postcode")
 	private int postcode;
 	
+	@Column(name = "image")
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public int getPostcode() {
 		return postcode;
 	}

@@ -74,7 +74,7 @@
 		<!-- Add your html code here  -->
 		<div class="card text-center">
   			<div class="card-body">
-    			<h3>Find yourself a lovely place from today</h3>
+    			<h4>Hi ${user_first}!  Find yourself a lovely place</h4>
     			
 			<form>
 			  <input type="text" name="search" placeholder="Search by suburb or postcode">
@@ -91,7 +91,22 @@
 				</div>
 			</section>
   			</div>
-  			
+		</div>
+		<div class="card text-center">
+		<div class="card-body">
+        <div class="row">
+			<c:forEach items="${houses}" var="houses">
+			<div class="card" style="width: 22.85rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${houses.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${houses.type} </p>
+    				<p class="card-text">Weekly price: ${houses.price}</p>
+    				<p class="card-text">Suburb: ${houses.subrub} Postcode: ${houses.postcode}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
+		</div>
 		</div>
 	</div>
 	</body>

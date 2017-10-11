@@ -30,7 +30,7 @@
       			</ul>
       			<ul class="navbar-nav mr-auto">
         			<li class="nav-item">
-          				<a class="nav-link" href="./profile">Accommodation</a>
+          				<a class="nav-link" href="/gscp/accommodation/home">Accommodation</a>
         			</li>
       			</ul>
       			<ul class="navbar-nav mr-auto">
