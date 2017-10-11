@@ -27,8 +27,16 @@ public class House {
 	@Column(name = "suburb")
 	private String subrub;
 	
-	@Column(name = "contactInfo")
-	private String contactInfo;
+	@Column(name = "postcode")
+	private int postcode;
+	
+	public int getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(int postcode) {
+		this.postcode = postcode;
+	}
 
 	public int getId() {
 		return id;
@@ -68,14 +76,6 @@ public class House {
 
 	public void setSubrub(String subrub) {
 		this.subrub = subrub;
-	}
-
-	public String getContactInfo() {
-		return contactInfo;
-	}
-
-	public void setContactInfo(String contactInfo) {
-		this.contactInfo = contactInfo;
 	}
 	
 	

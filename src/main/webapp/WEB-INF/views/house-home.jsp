@@ -2,6 +2,30 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<style> 
+		input[type=text] {
+		    width: 300px;
+		    box-sizing: border-box;
+		    border: 2px solid #ccc;
+		    border-radius: 4px;
+		    font-size: 16px;
+		    background-color: white;
+		    background-image: url('<c:url value="/resources/images/searchicon.png" />');
+		    background-size: 40px 40px;
+		    background-position: 0px 5px; 
+		    background-repeat: no-repeat;
+		    padding: 12px 20px 12px 40px;
+		    -webkit-transition: width 0.4s ease-in-out;
+		    transition: width 0.4s ease-in-out;
+		}
+		
+		input[type=text]:focus {
+		    width: 100%;
+		}
+		.div-inline{display:inline}
+		.btn{min-width:90px;
+		max-height:40px}
+		</style>
 		<link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
 		<link href="<c:url value="/resources/css/gscp.css" />" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +33,7 @@
 		<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 		<script src="<c:url value="/resources/js/validator.min.js" />"></script>
 	</head>
+	
 	<body>
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
@@ -49,8 +74,24 @@
 		<!-- Add your html code here  -->
 		<div class="card text-center">
   			<div class="card-body">
-    			<h2>Welcome,${user_first} ${user_last}!</h2>
+    			<h3>Find yourself a lovely place from today</h3>
+    			
+			<form>
+			  <input type="text" name="search" placeholder="Search by suburb or postcode">
+			</form>
+			<section>
+				<div class="div-inline">
+					<button type="button" class="btn btn-primary">Type</button>
+				</div>
+				<div class="div-inline">
+					<button type="button" class="btn btn-success">Price</button>
+				</div>
+				<div class="div-inline">
+					<button type="button" class="btn btn-info">Location</button>
+				</div>
+			</section>
   			</div>
+  			
 		</div>
 	</div>
 	</body>
