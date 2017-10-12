@@ -36,6 +36,14 @@ public class ForumContent {
 	@Column(name = "visability")
 	private boolean visability;
 	
+	public boolean isVisability() {
+		return visability;
+	}
+
+	public void setVisability(boolean visability) {
+		this.visability = visability;
+	}
+
 	@PrePersist
 	protected void onCreate() {
 		date = new Date();

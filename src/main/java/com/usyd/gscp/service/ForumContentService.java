@@ -1,5 +1,7 @@
 package com.usyd.gscp.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,5 +18,24 @@ public class ForumContentService {
 	
 	public void createNewContent(ForumContent content) {
 		forumContentDao.saveForumContent(content);
+	}
+	
+	public void updateContent(ForumContent content) {
+		forumContentDao.updateForumContent(content);
+	}
+	
+	public ArrayList<ForumContent> getAllCotents() {
+		ArrayList<ForumContent> result = (ArrayList<ForumContent>) forumContentDao.getAllContent();
+		return result;
+	}
+	
+	public ForumContent getCotentById(int id) {
+		ArrayList<ForumContent> result = (ArrayList<ForumContent>) forumContentDao.getContentById("id", id);
+		return result.get(0);
+	}
+	
+	public ArrayList<ForumContent> getCotentByUserId(int id) {
+		ArrayList<ForumContent> result = (ArrayList<ForumContent>) forumContentDao.getContentById("userId", id);
+		return result;
 	}
 }
