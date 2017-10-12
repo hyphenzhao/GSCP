@@ -32,6 +32,44 @@ public class HouseService {
 		}
 		return result;
 	}
+	public ArrayList<House> getHouseByPrice(int num){
+		ArrayList<House> result = (ArrayList<House>)houseDao.getAllHouses();
+		if(num==600){
+			for(int i=0;i<result.size();i++){
+				if(!(result.get(i).getPrice()>=num)){
+					result.remove(i);
+					i--;
+				}
+			}
+		}else{
+			for(int i=0;i<result.size();i++){
+				if(!(result.get(i).getPrice()>=num&&result.get(i).getPrice()<=num+200)){
+					result.remove(i);
+					i--;
+				}
+			}
+		}
+		return result;
+	}
+	public ArrayList<House> getHouseByBed(int num){
+		ArrayList<House> result = (ArrayList<House>)houseDao.getAllHouses();
+		if(num==3){
+			for(int i=0;i<result.size();i++){
+				if(!(result.get(i).getBedroom()>=num)){
+					result.remove(i);
+					i--;
+				}
+			}
+		}else{
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).getBedroom()!=num){
+					result.remove(i);
+					i--;
+				}
+			}
+		}
+		return result;
+	}
 	
 	public ArrayList<House> getAllHouses(){
 		ArrayList<House> result = (ArrayList<House>)houseDao.getAllHouses();
