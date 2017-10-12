@@ -4,7 +4,7 @@
 	<head>
 		<style> 
 		input[type=text] {
-		    width: 300px;
+		    width: 600px;
 		    box-sizing: border-box;
 		    border: 2px solid #ccc;
 		    border-radius: 4px;
@@ -25,6 +25,30 @@
 		.div-inline{display:inline}
 		.btn{min-width:90px;
 		max-height:40px}
+		select#types{
+			background-color:#91EB76;
+		    width: 100px;
+		    padding: 5px;
+		    font-size: 16px;
+		    border: 1px solid #ccc;
+		    height: 34px;
+		}
+		select#price{
+			background-color:#FFD700;
+		    width: 100px;
+		    padding: 5px;
+		    font-size: 16px;
+		    border: 1px solid #ccc;
+		    height: 34px;
+		}
+		select#bedrooms{
+			background-color:#ADD8E6;
+		    width: 100px;
+		    padding: 5px;
+		    font-size: 16px;
+		    border: 1px solid #ccc;
+		    height: 34px;
+		}
 		</style>
 		<link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
 		<link href="<c:url value="/resources/css/gscp.css" />" rel="stylesheet">
@@ -81,14 +105,35 @@
 			</form>
 			<section>
 				<div class="div-inline">
-					<button type="button" class="btn btn-primary">Type</button>
-				</div>
-				<div class="div-inline">
-					<button type="button" class="btn btn-success">Price</button>
-				</div>
-				<div class="div-inline">
-					<button type="button" class="btn btn-info">Location</button>
-				</div>
+					<select id="types">
+					<option value="all">Types</option>
+					<option value="House">House</option>
+		  			<option value="Apartment">Apartment</option>
+					<option value="Unit">Unit</option>
+					</select>
+					<select id = "price">
+					<option value="all">Min price</option>
+					<option value="200">100</option>
+					<option value="200">200</option>
+					<option value="300">300</option>
+		  			<option value="400">400</option>
+					<option value="500">500</option>
+					</select>
+					<select id = "price">
+					<option value="all">Max price</option>
+					<option value="200">100</option>
+					<option value="200">200</option>
+					<option value="300">300</option>
+		  			<option value="400">400</option>
+					<option value="500">more than 500</option>
+					</select>
+					<select id = "bedrooms">
+					<option value="all">Bedroom</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+		  			<option value="3">3</option>
+					<option value="4">4</option>
+					</select>
 			</section>
   			</div>
 		</div>
@@ -96,15 +141,15 @@
 		<div class="card-body">
         <div class="row">
 			<c:forEach items="${houses}" var="houses">
-			<div class="card" style="width: 22.85rem;">
-  				<img class="img-rounded" src="<c:url value="/resources/images/${houses.image}"/>" width=370px height = 300px>
-  				<div class="card-body">
-    				<p class="card-text">Type: ${houses.type} </p>
-    				<p class="card-text">Weekly price: ${houses.price}</p>
-    				<p class="card-text">Suburb: ${houses.subrub} Postcode: ${houses.postcode}</p>
-  				</div>
-			</div>
-		</c:forEach>
+				<div class="card" style="width: 22.85rem;">
+	  				<img class="img-rounded" src="<c:url value="/resources/images/${houses.image}"/>" width=370px height = 300px>
+	  				<div class="card-body">
+	    				<p class="card-text">Type: ${houses.type} </p>
+	    				<p class="card-text">Weekly price: ${houses.price}</p>
+	    				<p class="card-text">Suburb: ${houses.subrub} Postcode: ${houses.postcode}</p>
+	  				</div>
+				</div>
+			</c:forEach>
 		</div>
 		</div>
 		</div>

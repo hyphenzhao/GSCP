@@ -28,7 +28,10 @@ public class HouseController {
 	public String Welcome(Locale locale, Model model,
 			@ModelAttribute("current_user") User user) {
 		ArrayList<House> houses = houseService.getAllHouses();
+		
+		
 		model.addAttribute("houses", houses);
+		
 		return "house-home";
 	}
 }
