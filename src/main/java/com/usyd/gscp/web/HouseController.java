@@ -27,11 +27,17 @@ public class HouseController {
 	@RequestMapping(value="/accommodation/home",method = RequestMethod.GET)
 	public String Welcome(Locale locale, Model model,
 			@ModelAttribute("current_user") User user) {
+		
 		ArrayList<House> houses = houseService.getAllHouses();
+		ArrayList<House> apartmentHouse = houseService.getHouseByType("apartment");
+		ArrayList<House> houseHouse = houseService.getHouseByType("house");
+		ArrayList<House> unitHouse = houseService.getHouseByType("unit");
 		
-		
+		model.addAttribute("user_first", user.getFirst());
 		model.addAttribute("houses", houses);
-		
+		model.addAttribute("apartmentHouse", apartmentHouse);
+		model.addAttribute("houseHouse", houseHouse);
+		model.addAttribute("unitHouse", unitHouse);
 		return "house-home";
 	}
 }

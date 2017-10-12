@@ -52,5 +52,4 @@ public class HouseDao {
 	    	session.close();
 	    	return null;
 	}
-	
 }
