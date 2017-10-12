@@ -19,6 +19,11 @@ public class UserService {
     @Autowired
     private UserDao userDao;
     
+    public ArrayList<User> getAllUsers() {
+    	ArrayList<User> result = (ArrayList<User>)userDao.getAllUsers();
+    	return result;
+    }
+    
     public User getUserById(int id) {
     	return userDao.getUserById(id);
     }
