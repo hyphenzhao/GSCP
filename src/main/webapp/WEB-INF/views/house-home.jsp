@@ -164,6 +164,7 @@
 	    				<p class="card-text">Type: ${houses.type} </p>
 	    				<p class="card-text">Weekly price: ${houses.price}</p>
 	    				<p class="card-text">Suburb: ${houses.subrub} Postcode: ${houses.postcode}</p>
+	    				<p class="card-text">Details: ${houses.description}</p>
 	  				</div>
 				</div>
 			</c:forEach>
@@ -176,6 +177,7 @@
     				<p class="card-text">Type: ${apartmentHouse.type} </p>
     				<p class="card-text">Weekly price: ${apartmentHouse.price}</p>
     				<p class="card-text">Suburb: ${apartmentHouse.subrub} Postcode: ${apartmentHouse.postcode}</p>
+    				<p class="card-text">Details: ${apartmentHouse.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -188,6 +190,7 @@
     				<p class="card-text">Type: ${houseHouse.type} </p>
     				<p class="card-text">Weekly price: ${houseHouse.price}</p>
     				<p class="card-text">Suburb: ${houseHouse.subrub} Postcode: ${houseHouse.postcode}</p>
+    				<p class="card-text">Details: ${houseHouse.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -200,6 +203,7 @@
     				<p class="card-text">Type: ${unitHouse.type} </p>
     				<p class="card-text">Weekly price: ${unitHouse.price}</p>
     				<p class="card-text">Suburb: ${unitHouse.subrub} Postcode: ${unitHouse.postcode}</p>
+    				<p class="card-text">Details: ${unitHouse.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -216,6 +220,7 @@
     				<p class="card-text">Type: ${house0.type} </p>
     				<p class="card-text">Weekly price: ${house0.price}</p>
     				<p class="card-text">Suburb: ${house0.subrub} Postcode: ${house0.postcode}</p>
+    				<p class="card-text">Details: ${house0.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -228,6 +233,7 @@
     				<p class="card-text">Type: ${house2.type} </p>
     				<p class="card-text">Weekly price: ${house2.price}</p>
     				<p class="card-text">Suburb: ${house2.subrub} Postcode: ${house2.postcode}</p>
+    				<p class="card-text">Details: ${house2.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -240,6 +246,7 @@
     				<p class="card-text">Type: ${house4.type} </p>
     				<p class="card-text">Weekly price: ${house4.price}</p>
     				<p class="card-text">Suburb: ${house4.subrub} Postcode: ${house4.postcode}</p>
+    				<p class="card-text">Details: ${house4.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -252,6 +259,7 @@
     				<p class="card-text">Type: ${house6.type} </p>
     				<p class="card-text">Weekly price: ${house6.price}</p>
     				<p class="card-text">Suburb: ${house6.subrub} Postcode: ${house6.postcode}</p>
+    				<p class="card-text">Details: ${house6.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -266,6 +274,7 @@
     				<p class="card-text">Type: ${houseBed1.type} </p>
     				<p class="card-text">Weekly price: ${houseBed1.price}</p>
     				<p class="card-text">Suburb: ${houseBed1.subrub} Postcode: ${houseBed1.postcode}</p>
+    				<p class="card-text">Details: ${houseBed1.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -278,6 +287,7 @@
     				<p class="card-text">Type: ${houseBed2.type} </p>
     				<p class="card-text">Weekly price: ${houseBed2.price}</p>
     				<p class="card-text">Suburb: ${houseBed2.subrub} Postcode: ${houseBed2.postcode}</p>
+    				<p class="card-text">Details: ${houseBed2.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -290,6 +300,7 @@
     				<p class="card-text">Type: ${houseBed3.type} </p>
     				<p class="card-text">Weekly price: ${houseBed3.price}</p>
     				<p class="card-text">Suburb: ${houseBed3.subrub} Postcode: ${houseBed3.postcode}</p>
+    				<p class="card-text">Details: ${houseBed3.description}</p>
   				</div>
 			</div>
 		</c:forEach>
