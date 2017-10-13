@@ -33,6 +33,17 @@ public class House {
 	@Column(name = "image")
 	private String image;
 	
+	@Column(name = "bedroom")
+	private int bedroom;
+	
+	public int getBedroom() {
+		return bedroom;
+	}
+
+	public void setBedroom(int bedroom) {
+		this.bedroom = bedroom;
+	}
+
 	public String getImage() {
 		return image;
 	}

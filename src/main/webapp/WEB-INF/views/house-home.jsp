@@ -120,9 +120,9 @@
   			<div class="card-body">
     			<h4>Hi ${user_first}!  Find yourself a lovely place</h4>
     			
-			<form>
-			  <input type="text" name="search" placeholder="Search by suburb or postcode">
-			  
+			<form method="post">
+				<input id = "search" type="text" name="search" onkeypress="return runScript(event)" placeholder="Search by suburb">
+				  
 			</form>
 			<section>
 				<div class="div-inline">
@@ -133,21 +133,19 @@
 					<option value="Unit">Unit</option>
 					</select>
 					
-					<select id = "price">
-					<option value="all">price</option>
-					<option value="min">minimum</option>
-					<option value="200">200-300</option>
-					<option value="300">300-400</option>
-					<option value="400">400-500</option>
-		  			<option value="max">more than 500</option>
+					<select id = "price" onchange="showPrice()">
+					<option value="all">Price</option>
+					<option value="0">0-200</option>
+					<option value="200">200-400</option>
+					<option value="400">400-600</option>
+		  			<option value="600">more than 600</option>
 					</select>
 					
-					<select id = "bedrooms">
+					<select id = "bedrooms" onchange="showBedrooms()">
 					<option value="all">Bedroom</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
-		  			<option value="3">3</option>
-					<option value="4">4</option>
+		  			<option value="3">more than 3</option>
 					</select>
 					</div>
 			</section>
@@ -166,6 +164,7 @@
 	    				<p class="card-text">Type: ${houses.type} </p>
 	    				<p class="card-text">Weekly price: ${houses.price}</p>
 	    				<p class="card-text">Suburb: ${houses.subrub} Postcode: ${houses.postcode}</p>
+	    				<p class="card-text">Details: ${houses.description}</p>
 	  				</div>
 				</div>
 			</c:forEach>
@@ -178,6 +177,7 @@
     				<p class="card-text">Type: ${apartmentHouse.type} </p>
     				<p class="card-text">Weekly price: ${apartmentHouse.price}</p>
     				<p class="card-text">Suburb: ${apartmentHouse.subrub} Postcode: ${apartmentHouse.postcode}</p>
+    				<p class="card-text">Details: ${apartmentHouse.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -190,6 +190,7 @@
     				<p class="card-text">Type: ${houseHouse.type} </p>
     				<p class="card-text">Weekly price: ${houseHouse.price}</p>
     				<p class="card-text">Suburb: ${houseHouse.subrub} Postcode: ${houseHouse.postcode}</p>
+    				<p class="card-text">Details: ${houseHouse.description}</p>
   				</div>
 			</div>
 		</c:forEach>
@@ -202,10 +203,126 @@
     				<p class="card-text">Type: ${unitHouse.type} </p>
     				<p class="card-text">Weekly price: ${unitHouse.price}</p>
     				<p class="card-text">Suburb: ${unitHouse.subrub} Postcode: ${unitHouse.postcode}</p>
+    				<p class="card-text">Details: ${unitHouse.description}</p>
   				</div>
 			</div>
 		</c:forEach>
 		</div>
+		
+		
+		
+		
+		<div class="row" id="house0">
+		<c:forEach items="${house0}" var="house0">
+			<div class="card" style="width: 22.80rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${house0.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${house0.type} </p>
+    				<p class="card-text">Weekly price: ${house0.price}</p>
+    				<p class="card-text">Suburb: ${house0.subrub} Postcode: ${house0.postcode}</p>
+    				<p class="card-text">Details: ${house0.description}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
+		<div class="row" id="house2">
+		<c:forEach items="${house2}" var="house2">
+			<div class="card" style="width: 22.80rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${house2.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${house2.type} </p>
+    				<p class="card-text">Weekly price: ${house2.price}</p>
+    				<p class="card-text">Suburb: ${house2.subrub} Postcode: ${house2.postcode}</p>
+    				<p class="card-text">Details: ${house2.description}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
+		<div class="row" id="house4">
+		<c:forEach items="${house4}" var="house4">
+			<div class="card" style="width: 22.80rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${house4.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${house4.type} </p>
+    				<p class="card-text">Weekly price: ${house4.price}</p>
+    				<p class="card-text">Suburb: ${house4.subrub} Postcode: ${house4.postcode}</p>
+    				<p class="card-text">Details: ${house4.description}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
+		<div class="row" id="house6">
+		<c:forEach items="${house6}" var="house6">
+			<div class="card" style="width: 22.80rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${house6.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${house6.type} </p>
+    				<p class="card-text">Weekly price: ${house6.price}</p>
+    				<p class="card-text">Suburb: ${house6.subrub} Postcode: ${house6.postcode}</p>
+    				<p class="card-text">Details: ${house6.description}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
+		
+		
+		<div class="row" id="bed1">
+		<c:forEach items="${houseBed1}" var="houseBed1">
+			<div class="card" style="width: 22.80rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${houseBed1.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${houseBed1.type} </p>
+    				<p class="card-text">Weekly price: ${houseBed1.price}</p>
+    				<p class="card-text">Suburb: ${houseBed1.subrub} Postcode: ${houseBed1.postcode}</p>
+    				<p class="card-text">Details: ${houseBed1.description}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
+		<div class="row" id="bed2">
+		<c:forEach items="${houseBed2}" var="houseBed2">
+			<div class="card" style="width: 22.80rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${houseBed2.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${houseBed2.type} </p>
+    				<p class="card-text">Weekly price: ${houseBed2.price}</p>
+    				<p class="card-text">Suburb: ${houseBed2.subrub} Postcode: ${houseBed2.postcode}</p>
+    				<p class="card-text">Details: ${houseBed2.description}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
+		<div class="row" id="bed3">
+		<c:forEach items="${houseBed3}" var="houseBed3">
+			<div class="card" style="width: 22.80rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${houseBed3.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${houseBed3.type} </p>
+    				<p class="card-text">Weekly price: ${houseBed3.price}</p>
+    				<p class="card-text">Suburb: ${houseBed3.subrub} Postcode: ${houseBed3.postcode}</p>
+    				<p class="card-text">Details: ${houseBed3.description}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
+		
+		
+		
+		<div class="row" id="search_result">
+		<c:forEach items="${search_result}" var="search_result">
+			<div class="card" style="width: 22.80rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${search_result.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${search_result.type} </p>
+    				<p class="card-text">Weekly price: ${search_result.price}</p>
+    				<p class="card-text">Suburb: ${search_result.subrub} Postcode: ${search_result.postcode}</p>
+    				<p class="card-text">Details: ${search_result.description}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
+		
+		
 		</div>
 		</div>
 	</div>
@@ -215,6 +332,13 @@
 			$("#ap").hide();
 			$("#hh").hide();
 			$("#un").hide();
+			$("#house0").hide();
+			$("#house2").hide();
+			$("#house4").hide();
+			$("#house6").hide();
+			$("#bed1").hide();
+			$("#bed2").hide();
+			$("#bed3").hide();
 			getLocation();
 		}
 		
@@ -234,6 +358,62 @@
 				start();
 			}
 		}
+		function showPrice(){
+			var x = document.getElementById("price").value;
+			if(x=="0"){
+				showPrice0()
+			}else if(x=="200"){
+				showPrice2()
+			}else if(x=="400"){
+				showPrice4()
+			}else if(x=="600"){
+				showPrice6()
+			}else{
+				$(".row").show();
+				start();
+			}
+		}
+		function showBedrooms(){
+			var x = document.getElementById("bedrooms").value;
+			if(x=="1"){
+				showBed1()
+			}else if(x=="2"){
+				showBed2()
+			}else if(x=="3"){
+				showBed3()
+			}else{
+				$(".row").show();
+				start();
+			}
+		}
+		function showBed1(){
+			hide();
+			$("#bed1").show();
+		}
+		function showBed2(){
+			hide();
+			$("#bed2").show();
+		}
+		function showBed3(){
+			hide();
+			$("#bed3").show();
+		}
+		function showPrice0(){
+			hide();
+			$("#house0").show();
+		}
+		function showPrice2(){
+			hide();
+			$("#house2").show();
+		}
+		function showPrice4(){
+			hide();
+			$("#house4").show();
+		}
+		function showPrice6(){
+			hide();
+			$("#house6").show();
+		}
 		function showHouse(){
 			hide();
 			$("#hh").show();
@@ -247,8 +427,18 @@
 			$("#un").show();
 		}
 		</script>
+<script>
+function runScript(e){
+	if(e.keyCode == 13){
+		var tb = document.getElementById("search");
+		eval(tb.value);
+		return false;
+	}
+}
+</script>
 
- <script src="https://maps.google.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU"></script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU"></script>
+
 <script>
 var x=document.getElementById("demo");
 function getLocation()
