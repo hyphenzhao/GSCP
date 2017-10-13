@@ -120,9 +120,9 @@
   			<div class="card-body">
     			<h4>Hi ${user_first}!  Find yourself a lovely place</h4>
     			
-			<form>
-			  <input id = "search" type="text" name="search" onkeypress="return runScript(event)" placeholder="Search by suburb">
-			
+			<form method="post">
+				<input id = "search" type="text" name="search" onkeypress="return runScript(event)" placeholder="Search by suburb">
+				  
 			</form>
 			<section>
 				<div class="div-inline">
@@ -307,6 +307,20 @@
 		</div>
 		
 		
+		
+		<div class="row" id="search_result">
+		<c:forEach items="${search_result}" var="search_result">
+			<div class="card" style="width: 22.80rem;">
+  				<img class="img-rounded" src="<c:url value="/resources/images/${search_result.image}"/>" width=370px height = 300px>
+  				<div class="card-body">
+    				<p class="card-text">Type: ${search_result.type} </p>
+    				<p class="card-text">Weekly price: ${search_result.price}</p>
+    				<p class="card-text">Suburb: ${search_result.subrub} Postcode: ${search_result.postcode}</p>
+    				<p class="card-text">Details: ${search_result.description}</p>
+  				</div>
+			</div>
+		</c:forEach>
+		</div>
 		
 		
 		</div>

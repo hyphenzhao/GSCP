@@ -25,7 +25,6 @@ public class HouseController {
 	@RequestMapping(value="/accommodation/home",method = RequestMethod.GET)
 	public String Welcome(Locale locale, Model model,
 			@ModelAttribute("current_user") User user) {
-		
 		ArrayList<House> houses = houseService.getAllHouses();
 		ArrayList<House> apartmentHouse = houseService.getHouseByType("apartment");
 		ArrayList<House> houseHouse = houseService.getHouseByType("house");
@@ -58,10 +57,10 @@ public class HouseController {
 	
 	@RequestMapping(value="/accommodation/home",method = RequestMethod.POST)
 	public String Search(Locale locale, Model model,
-			@RequestParam("suburb") String suburb,
+			@RequestParam("search") String search,
 			@ModelAttribute("current_user") User user){
-		System.out.println(suburb);
-		System.out.println(user.getFirst());
+		ArrayList<House> search_result = houseService.getHouseBySearch(search);
+		model.addAttribute("search_result", search_result);
 		return "house-home";
 	}
 }

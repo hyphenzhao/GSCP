@@ -51,6 +51,16 @@ public class HouseService {
 		}
 		return result;
 	}
+	public ArrayList<House> getHouseBySearch(String search){
+		ArrayList<House> result = (ArrayList<House>)houseDao.getAllHouses();
+		for(int i=0;i<result.size();i++){
+			if(!result.get(i).getSubrub().equals(search)){
+				result.remove(i);
+				i--;
+			}
+		}
+		return result;
+	}
 	public ArrayList<House> getHouseByBed(int num){
 		ArrayList<House> result = (ArrayList<House>)houseDao.getAllHouses();
 		if(num==3){
