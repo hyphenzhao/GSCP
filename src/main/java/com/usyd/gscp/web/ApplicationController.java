@@ -53,11 +53,11 @@ public class ApplicationController {
 			@ModelAttribute("current_user") User user) {
 		
 		if(((user.getRole() & UserRoleContext.USER_STUDENT) == 0) && ((user.getRole() & UserRoleContext.USER_AGENT) == 0)) {
-			model.addAttribute("user_role", "none");
+			model.addAttribute("user_role", "None");
 		} else if (((user.getRole() & UserRoleContext.USER_STUDENT) == 0)) {
-			model.addAttribute("user_role", "agent");
+			model.addAttribute("user_role", "Agent");
 		} else if (((user.getRole() & UserRoleContext.USER_AGENT) == 0)){
-			model.addAttribute("user_role", "student");
+			model.addAttribute("user_role", "Student");
 		}
 		model.addAttribute("user_first", user.getFirst());
 		model.addAttribute("user_last", user.getLast());
@@ -182,7 +182,7 @@ public class ApplicationController {
 	            return  result;
 	        }
 	    });
-		Application cApplication = currentApplications.get(0);
+		Application cApplication = currentApplications.get(applicationNo - 1);
 		Degree cDegree = degreeService.getDegreeById(cApplication.getDegreeId());
 		University cUniversity = uniService.getUniById(cDegree.getUniId());
 		ArrayList<Document> cDocuments = documentService.getDocumentsByAppId(cApplication.getId());
@@ -191,7 +191,104 @@ public class ApplicationController {
 		model.addAttribute("degree", cDegree);
 		model.addAttribute("application", cApplication);
 		model.addAttribute("documents", cDocuments);
+		model.addAttribute("type", "details");
 		
 		return "application-student-history";
+	}
+	
+	@RequestMapping(value = "/application/student/history", method = RequestMethod.POST)
+	public String studentApplicationDetailUpdate(Locale locale, Model model,
+			@ModelAttribute("current_user") User user,
+			@RequestParam("title") String title,
+			@RequestParam("content") String content,
+			@RequestParam("application-id") int appId) {
+		Application cApplication = applicationService.getApplicationById(appId).get(0);
+		
+		cApplication.setTitle(title);
+		cApplication.setContent(content);
+		
+		applicationService.updateApplication(cApplication);
+		
+		return "redirect: /gscp/application/student/history";
+	}
+	
+	@RequestMapping(value = "/application/agent", method = RequestMethod.GET)
+	public String agentApplicationView(Locale locale, Model model,
+			@ModelAttribute("current_user") User user) {
+		ArrayList<Application> currentApplications = applicationService.getApplicationByAgentId(user.getId());
+		ArrayList<University> unis = uniService.getAllUnis();
+		ArrayList<Degree> degrees = degreeService.getAllDegrees();
+		ArrayList<User> students = userService.getUsersByRole(UserRoleContext.USER_STUDENT);
+		
+		Collections.sort(currentApplications, new Comparator<Application>() {
+	        @Override
+	        public int compare(Application app1, Application app2)
+	        {
+	        	int result = -1;
+	        	if(app1.getId() < app2.getId()){
+	        		result = 1;
+	        	}
+	            return  result;
+	        }
+	    });
+		
+		model.addAttribute("applications", currentApplications);
+		model.addAttribute("universities", unis);
+		model.addAttribute("degrees", degrees);
+		model.addAttribute("students", students);
+		model.addAttribute("type", "list");
+		
+		return "application-agent";
+	}
+	
+	@RequestMapping(value = "/application/agent/{applicationNo}", method = RequestMethod.GET)
+	public String agentApplicationDetail(Locale locale, Model model,
+			@ModelAttribute("current_user") User user,
+			@PathVariable int applicationNo) {
+		ArrayList<Application> currentApplications = applicationService.getApplicationByAgentId(user.getId());
+		if(currentApplications.size() == 0)
+			return "redirect: /gscp/application/home";
+		
+		Collections.sort(currentApplications, new Comparator<Application>() {
+	        @Override
+	        public int compare(Application app1, Application app2)
+	        {
+	        	int result = -1;
+	        	if(app1.getId() < app2.getId()){
+	        		result = 1;
+	        	}
+	            return  result;
+	        }
+	    });
+		Application cApplication = currentApplications.get(applicationNo - 1);
+		Degree cDegree = degreeService.getDegreeById(cApplication.getDegreeId());
+		University cUniversity = uniService.getUniById(cDegree.getUniId());
+		ArrayList<Document> cDocuments = documentService.getDocumentsByAppId(cApplication.getId());
+		
+		model.addAttribute("university", cUniversity);
+		model.addAttribute("degree", cDegree);
+		model.addAttribute("application", cApplication);
+		model.addAttribute("documents", cDocuments);
+		model.addAttribute("type", "details");
+		
+		return "application-agent";
+	}
+	
+	@RequestMapping(value = "/application/agent", method = RequestMethod.POST)
+	public String agentApplicationDetailUpdate(Locale locale, Model model,
+			@ModelAttribute("current_user") User user,
+			@RequestParam("title") String title,
+			@RequestParam("content") String content,
+			@RequestParam("status") int status,
+			@RequestParam("application-id") int appId) {
+		Application cApplication = applicationService.getApplicationById(appId).get(0);
+		
+		cApplication.setTitle(title);
+		cApplication.setContent(content);
+		cApplication.setStatus(status);
+		
+		applicationService.updateApplication(cApplication);
+		
+		return "redirect: /gscp/application/agent";
 	}
 }

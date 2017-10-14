@@ -29,8 +29,9 @@ CREATE TABLE `application` (
   `degreeId` int(11) NOT NULL,
   `studentId` int(11) NOT NULL,
   `title` text,
+  `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +40,7 @@ CREATE TABLE `application` (
 
 LOCK TABLES `application` WRITE;
 /*!40000 ALTER TABLE `application` DISABLE KEYS */;
+INSERT INTO `application` VALUES (16,2,'This is content',10,1,'This is title',1),(17,2,'Thank you',4,1,'Thanks',0);
 /*!40000 ALTER TABLE `application` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,11 +79,11 @@ DROP TABLE IF EXISTS `document`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `document` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `applicationId` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
-  `studentId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,6 +92,7 @@ CREATE TABLE `document` (
 
 LOCK TABLES `document` WRITE;
 /*!40000 ALTER TABLE `document` DISABLE KEYS */;
+INSERT INTO `document` VALUES (11,14,'Screen Shot 2017-10-10 at 1.01.51 pm.png','6OI31L1QYP3EW6FLAL.png'),(12,15,'Screen Shot 2017-10-10 at 1.17.11 pm.png','S6ITY5G3XQVO9YSZY9.png'),(13,16,'Screen Shot 2017-10-10 at 1.17.11 pm.png','0PB0BKN5VCNTISYHUX.png'),(14,17,'Screen Shot 2017-09-30 at 2.30.18 am.png','SZVDBN06XXLEF03HAW.png');
 /*!40000 ALTER TABLE `document` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,31 +119,6 @@ CREATE TABLE `employee` (
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `person`
---
-
-DROP TABLE IF EXISTS `person`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `person` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `age` int(11) DEFAULT NULL,
-  `first` varchar(255) DEFAULT NULL,
-  `last` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `person`
---
-
-LOCK TABLES `person` WRITE;
-/*!40000 ALTER TABLE `person` DISABLE KEYS */;
-/*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -188,7 +166,7 @@ CREATE TABLE `user` (
   `username` varchar(255) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +175,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'hiphon@123.com','Haifeng','Zhao','E10ADC3949BA59ABBE56E057F20F883E','+61414900316',32,'Hiphon',NULL);
+INSERT INTO `user` VALUES (1,'hiphon@123.com','Haifeng','Zhao','E10ADC3949BA59ABBE56E057F20F883E','+61414900316',32,'Hiphon',NULL),(2,'hzha7521@uni.sydney.edu.au','Hyphen','Zhao','E10ADC3949BA59ABBE56E057F20F883E','+61412345678',16,'Hyphen',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -210,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-08 15:50:55
+-- Dump completed on 2017-10-10 23:20:52

@@ -20,12 +20,12 @@
 			<div class="collapse navbar-collapse" width="80%" id="navbarColor03">
       			<ul class="navbar-nav mr-auto">
         			<li class="nav-item">
-          				<a class="nav-link" href="/gscp/profile">Profile <span class="sr-only">(current)</span></a>
+          				<a class="nav-link" href="/gscp/profile">Profile</a>
         			</li>
       			</ul>
       			<ul class="navbar-nav mr-auto">
         			<li class="nav-item active">
-          				<a class="nav-link" href="/gscp/application/home">Application</a>
+          				<a class="nav-link" href="/gscp/application/home">Application <span class="sr-only">(current)</span></a>
         			</li>
       			</ul>
       			<ul class="navbar-nav mr-auto">
@@ -51,7 +51,7 @@
   			<div class="card-body">
     			<%
     				String user_role = (String)request.getAttribute("user_role");
-    				if(user_role.equals("none")) {
+    				if(user_role.equals("None")) {
     			%>
     			<h2>Welcome,${user_first} ${user_last}!</h2>
     			<br>
@@ -67,7 +67,7 @@
     			%>
     			
 				<%
-					if(user_role.equals("student")) {
+					if(user_role.equals("Student")) {
 				%>
 				<nav class="nav nav-pills nav-fill">
   					<a class="nav-item nav-link active" href="/gscp/application/home">Home</a>
