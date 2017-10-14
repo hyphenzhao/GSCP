@@ -156,11 +156,6 @@
 			<artifactId>validation-api</artifactId>
 			<version>1.0.0.GA</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>gs-uploading-files</artifactId>
-			<version>0.1.0</version>
-		</dependency>
 		<!-- Apache Commons FileUpload -->
 <dependency>
     <groupId>commons-fileupload</groupId>
