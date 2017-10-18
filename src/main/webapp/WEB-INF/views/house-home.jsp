@@ -116,7 +116,10 @@
 		
 		<!-- Add your html code here  -->
 		<div class="card text-center">
-		
+			<nav class="nav nav-pills nav-fill">
+  					<a class="nav-item nav-link active" href="/gscp/accommodation/home">Find a house</a>
+					<a class="nav-item nav-link" href="/gscp/accommodation/home/post">Post a house</a>
+			</nav>  
   			<div class="card-body">
     			<h4>Hi ${user_first}!  Find yourself a lovely place</h4>
     			

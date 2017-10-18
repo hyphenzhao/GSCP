@@ -36,6 +36,8 @@ public class DocumentDao {
 		criteria.add(
 					Restrictions.eq("applicationId", id)
 				);
-		return criteria.list();
+		List result = criteria.list();
+		session.close();
+		return result;
     }
 }

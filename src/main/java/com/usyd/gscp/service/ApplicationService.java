@@ -20,8 +20,22 @@ public class ApplicationService {
 		applicationDao.saveApplication(application);
 	}
 	
+	public void updateApplication(Application application) {
+		applicationDao.updateApplication(application);
+	}
+	
 	public ArrayList<Application> getApplicationByStudentId(int id) {
 		ArrayList<Application> result =(ArrayList<Application>) applicationDao.getApplicationById("studentId", id);
+		return result;
+	}
+	
+	public ArrayList<Application> getApplicationByAgentId(int id) {
+		ArrayList<Application> result =(ArrayList<Application>) applicationDao.getApplicationById("agentId", id);
+		return result;
+	}
+	
+	public ArrayList<Application> getApplicationById(int id) {
+		ArrayList<Application> result =(ArrayList<Application>) applicationDao.getApplicationById("id", id);
 		return result;
 	}
 }

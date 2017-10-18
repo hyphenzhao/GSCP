@@ -29,6 +29,10 @@ public class ApplicationDao {
     	sessionFactory.getCurrentSession().save(application);
     }
     
+    public void updateApplication(Application application) {
+    	sessionFactory.getCurrentSession().update(application);
+    }
+    
     public List getApplicationById(String role,int id) {
     	Session session = sessionFactory.openSession();
     	Criteria criteria = session.createCriteria(Application.class);

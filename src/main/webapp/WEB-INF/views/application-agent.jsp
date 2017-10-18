@@ -8,6 +8,7 @@
 		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 		<script src="<c:url value="/resources/js/validator.min.js" />"></script>
+		<script src="<c:url value="/resources/js/update-application.js" />"></script>
 	</head>
 	<body>
 	<div class="container">
@@ -51,10 +52,9 @@
   			<div class="card-body">
     			<nav class="nav nav-pills nav-fill">
   					<a class="nav-item nav-link" href="/gscp/application/home">Home</a>
-					<a class="nav-item nav-link" href="/gscp/application/student/new">New Applications</a>
-					<a class="nav-item nav-link active" href="/gscp/application/student/history">My Applications</a>
+					<a class="nav-item nav-link active" href="/gscp/application/agent">Student Applications</a>
 				</nav>
-				<h2>My Application History</h2>
+				<h2>Students' Applications</h2>
 				<c:if test="${type == 'list'}">
 				<div class="row">
 					<c:set var="count" value="1" scope="page" />
@@ -70,14 +70,14 @@
 								<c:set var="university_name" value="${university.name}" scope="page"/>
 								<c:set var="university_image" value="${university.image}" scope="page"/>
 							</c:if>
-						</c:forEach>
+						</c:forEach>		
 						<div class="card" style="width: 20rem;">
   							<img class="card-img-top" src="<c:url value="/resources/images/${university_image}" />" alt="Card image cap">
   							<div class="card-body">
     							<h4 class="card-title">${university_name}</h4>
     							<h6 class="card-subtitle mb-2 text-muted">${degree_name}</h6>
     							<p class="card-text">${application.title}</p>
-    							<a href="/gscp/application/student/history/${count}" class="btn btn-primary">Details</a>
+    							<a href="/gscp/application/agent/${count}" class="btn btn-primary">Details</a>
   							</div>
 						</div>
 						<c:set var="count" value="${count + 1}" scope="page" />
@@ -90,7 +90,7 @@
   					<div class="media-body">
     					<h4 class="mt-0">${university.name}</h4>
     					<h6 class="mt-0">${degree.name}</h6>
-    					<form action="/gscp/application/student/history" method="POST">
+    					<form action="/gscp/application/agent" method="POST">
     						<div class="form-group row">
    	 							<label for="title" class="col-sm-2 col-form-label">Title</label>
    	 							<div class="col-sm-8">
@@ -100,7 +100,7 @@
       						<div class="form-group row">
    	 							<label for="content" class="col-sm-2 col-form-label">Content</label>
    	 							<div class="col-sm-8">
-   	 								<textarea class="form-control" id="content" name="content" rows="15" placeholder="Input your application content here..." required>${application.content}</textarea>
+   	 								<textarea class="form-control" id="content" name="content" rows="15" required>${application.content}</textarea>
     							</div>
    	 						</div>
    	 						<input type="hidden" name="application-id" value="${application.id}" />
@@ -109,29 +109,38 @@
    	 						</c:forEach>
    	 						<c:if test="${application.status == 0}">
    	 							<div class="progress">
-  									<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Submitted</div>
+  									<div id="status-bar" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Submitted</div>
 								</div>
    	 						</c:if>
    	 						<c:if test="${application.status == 1}">
    	 							<div class="progress">
-  									<div class="progress-bar bg-warning" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Editing</div>
+  									<div id="status-bar" class="progress-bar bg-warning" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Editing</div>
 								</div>
    	 						</c:if>
    	 						<c:if test="${application.status == 2}">
    	 							<div class="progress">
-  									<div class="progress-bar bg-info" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Processing</div>
+  									<div id="status-bar" class="progress-bar bg-info" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Processing</div>
 								</div>
    	 						</c:if>
    	 						<c:if test="${application.status == 3}">
    	 							<div class="progress">
-  									<div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Successful</div>
+  									<div id="status-bar" class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Successful</div>
 								</div>
    	 						</c:if>
    	 						<c:if test="${application.status == 4}">
    	 							<div class="progress">
-  									<div class="progress-bar bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Failed</div>
+  									<div id="status-bar" class="progress-bar bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Failed</div>
 								</div>
    	 						</c:if>
+   	 						<div class="btn-group" role="group" aria-label="Basic example">
+   	 							<button type="button" class="btn btn-secondary" onclick="updateStatus('submitted')">Submitted</button>
+   	 							<button type="button" class="btn btn-secondary" onclick="updateStatus('editing')">Editing</button>
+   	 							<button type="button" class="btn btn-secondary" onclick="updateStatus('processing')">Processing</button>
+   	 							<button type="button" class="btn btn-secondary" onclick="updateStatus('successful')">Successful</button>
+   	 							<button type="button" class="btn btn-secondary" onclick="updateStatus('failed')">Failed</button>
+   	 						</div>
+   	 						<input id="status-value" type="hidden" value="${application.status}" name="status"/>
+   	 						<br><br>
    	 						<button type="submit" class="btn btn-success">Update</button>
     					</form>
     				</div>

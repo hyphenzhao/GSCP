@@ -19,8 +19,8 @@
     		</button>
 			<div class="collapse navbar-collapse" width="80%" id="navbarColor03">
       			<ul class="navbar-nav mr-auto">
-        			<li class="nav-item active">
-          				<a class="nav-link" href="/gscp/profile">Profile <span class="sr-only">(current)</span></a>
+        			<li class="nav-item">
+          				<a class="nav-link" href="/gscp/profile">Profile</a>
         			</li>
       			</ul>
       			<ul class="navbar-nav mr-auto">
@@ -39,37 +39,52 @@
         			</li>
       			</ul>
       			<ul class="navbar-nav mr-auto">
-        			<li class="nav-item">
-          				<a class="nav-link" href="/gscp/forum/home">Forum</a>
+        			<li class="nav-item active">
+          				<a class="nav-link" href="/gscp/forum/home">Forum  <span class="sr-only">(current)</span></a>
         			</li>
       			</ul>
     		</div>
 		</nav>
 		
 		<!-- Add your html code here  -->
-		<div class="card text-center">
+		<div class="card">
   			<div class="card-body">
-    			<h2>Welcome,${user_first} ${user_last}!</h2>
-    			<form action="/gscp/application/home" method="post">
-    				<div class="form-group row">
-        				<label for="email" class="col-sm-2 col-form-label">Email Address:</label>
-        				<div class="col-sm-8">
-          					<input type="input" class="form-control" id="current_email" name="current_email" value="${user_email}" readonly/>
-        				</div>
-      				</div>
-      				<div class="form-group row">
-        				<label for="phone" class="col-sm-2 col-form-label">Phone:</label>
-        				<div class="col-sm-8">
-          					<input type="input" class="form-control" id="current_phone" name="current_phone" value="${user_phone}" readonly/>
-        				</div>
-      				</div>
-      				<div class="form-group row">
-        				<label for="email" class="col-sm-2 col-form-label">Your Role:</label>
-        				<div class="col-sm-8">
-          					<input type="input" class="form-control" id="current_role" name="current_role" value="${user_role}" readonly/>
-        				</div>
-      				</div>
-    			</form>
+  				<div class="text-center">
+    				<h2>Welcome, ${current_user.first} ${current_user.last}!</h2>
+    				<c:if test="${success != null}">
+    					<div class="alert alert-success" role="alert">
+    						${success}
+    					</div>
+    				</c:if>
+    			</div>
+    			<div class="row">
+    			 	<div class="col-2 text-center" style="border-right: 2px solid #ccc;">
+    			 		<h4>Navigator</h4>
+    			 		<a href="/gscp/forum/home" class="btn btn-dark btn-block">Home</a>
+    			 		<a href="/gscp/forum/topics" class="btn btn-primary btn-block">My Topics</a>
+    			 		<a href="/gscp/forum/comments" class="btn btn-warning btn-block">My Comments</a>
+    			 		<a href="/gscp/forum/new/topic" class="btn btn-success btn-block">New Topics</a>
+    			 	</div>
+    			 	<div class="col-10">
+    			 		<div class="row">
+    			 			<div class="col-9" style="padding-left: 30px;">
+    			 				<h4>Topics</h4>
+    			 			</div>
+    			 			<div class="col-3">
+    			 				<h4>Date</h4>
+    			 			</div>
+    			 			<c:forEach items="${topics}" var="topic">
+    			 				<div class="col-9" style="padding-left: 30px;">
+    			 					<a href="/gscp/forum/${phrase}/${topic.id}">${topic.title}</a>
+    			 				</div>
+    			 				<div class="col-3">
+    			 					<p>${topic.date}</p>
+    			 				</div>
+    			 			</c:forEach>
+    			 		</div>
+    			 		
+    			 	</div>
+    			 </div>
   			</div>
 		</div>
 	</div>
