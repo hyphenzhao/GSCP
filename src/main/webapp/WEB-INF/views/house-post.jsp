@@ -89,16 +89,15 @@
     			<div class="form-group row">
    	 			<label for="description" class="col-sm-2 col-form-label">Description</label>
    	 			<div class="col-sm-8">
-   	 			<textarea class="form-control" id="content" name="content" rows="5" placeholder="Input the detailed description" required></textarea>
+   	 			<textarea class="form-control" id="content" name="description" rows="5" placeholder="Input the detailed description" required></textarea>
     				</div>
     			</div>
     			<div class="form-group row">
    	 			<label for="fileUpload" class="col-sm-2 col-form-label">Image </label>
    	 			<input type="file" id="fileUpload" name="file" />
-   	 			<button type="submit" class="btn btn-success">Submit</button>
    	 		</div>
-   	 		
    	 	</div>
+   	 		<button type="submit" class="btn btn-success">Submit</button>
    	 	</form>
       </div>
      

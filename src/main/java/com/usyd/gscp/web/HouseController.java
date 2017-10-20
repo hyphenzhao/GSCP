@@ -1,6 +1,7 @@
 package com.usyd.gscp.web;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -86,8 +87,7 @@ public class HouseController {
 			@RequestParam("postcode") String postcode,
 			@RequestParam("bedroom") String bedroom,
 			@RequestParam("file") MultipartFile file
-			){
-		System.out.println("sadfdsafdsfdsafasdf");
+			) throws IllegalStateException, IOException{
 		House house = new House();
 		house.setType(type);
 		house.setBedroom(Integer.parseInt(bedroom));
@@ -99,12 +99,14 @@ public class HouseController {
 		house.setImage(imgName);
 		
 		houseService.uploadHouse(house);
-		
-		String webappRoot = servletContext.getRealPath("/");
-	    String relativeFolder = File.separator + "resources" + File.separator
-	                             + "images" + File.separator;
-	    String filename = webappRoot + relativeFolder
-	                       +imgName;
+		String filePath = "/Users/PanHongLiang/Desktop/gscp-globalstudentcommunicationplatform/src/main/webapp/resources/images/"
+				+ imgName;
+		System.out.println(filePath);
+		File dest = new File(filePath);
+		file.transferTo(dest);
+	    
 	    return "redirect: /gscp/accommodation/home";
 	}
+	
+	
 }
