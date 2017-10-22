@@ -8,7 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "order")
@@ -24,11 +27,16 @@ public class Order {
 	@JoinColumn(table="book", name="id")
 	private int item;
 	
-	@Column(name = "date")
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	
 	@Column(name = "status")
 	private String status;
+	
+	@PrePersist
+	protected void onCreate() {
+		date = new Date();
+	}
 
 	public int getId() {
 		return id;
