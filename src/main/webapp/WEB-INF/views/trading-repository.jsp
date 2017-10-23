@@ -63,11 +63,12 @@
     				</c:if>
     			</div>
    			 	<nav class="nav nav-pills nav-fill">
-  					<a class="nav-item nav-link" href="/gscp/trading/repository">Your repository</a>
+  					<a class="nav-item nav-link active" href="/gscp/trading/repository">Your repository</a>
 					<a class="nav-item nav-link" href="/gscp/trading/new_post">Post</a>
 					<a class="nav-item nav-link" href="/gscp/trading/market">Search</a>
 					<a class="nav-item nav-link" href="/gscp/trading/orders">Order</a>
 				</nav>
+				<br>
 				<c:if test="${type == 'view'}">
  			 	<div class="table-responsive">          
 				  <table class="table table-hover">

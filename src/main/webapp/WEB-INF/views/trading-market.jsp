@@ -65,30 +65,34 @@
    			 	<nav class="nav nav-pills nav-fill">
   					<a class="nav-item nav-link" href="/gscp/trading/repository">Your repository</a>
 					<a class="nav-item nav-link" href="/gscp/trading/new_post">Post</a>
-					<a class="nav-item nav-link" href="/gscp/trading/market">Search</a>
+					<a class="nav-item nav-link active" href="/gscp/trading/market">Search</a>
 					<a class="nav-item nav-link" href="/gscp/trading/orders">Order</a>
 				</nav>
-				<form action="/gscp/trading/filtering" method="POST">
-					<label>Year Limitation</label>
-					<select name="year_selection">
-						<option value="0">No restriction</option>
-					    <option value="1">before 2000</option>
-					    <option value="2">after 2000</option>
-				  	</select>	  	
-				  	<label>Subject Limitation</label>
-					<select name="subject_selection">
-						<option value="0">No restriction</option>
-					    <option value="1">computer</option>
-					    <option value="2">Spring</option>
-				  	</select>
-				  	<label>Price Limitation</label>
-				  	<select name="price_selection">
-						<option value="0">No restriction</option>
-					    <option value="1">lower than 50</option>
-					    <option value="2">higher than 50</option>
-				  	</select>
-				  	<button>Filter</button>
-				</form>
+				<br>
+				<div class="text-center">
+					<form action="/gscp/trading/filtering" method="POST">
+						<label>Year Limitation</label>
+						<select name="year_selection">
+							<option value="0">No restriction</option>
+						    <option value="1">before 2000</option>
+						    <option value="2">after 2000</option>
+					  	</select>	  	
+					  	<label>Subject Limitation</label>
+						<select name="subject_selection">
+							<option value="0">No restriction</option>
+						    <option value="1">computer</option>
+						    <option value="2">Spring</option>
+					  	</select>
+					  	<label>Price Limitation</label>
+					  	<select name="price_selection">
+							<option value="0">No restriction</option>
+						    <option value="1">lower than 50</option>
+						    <option value="2">higher than 50</option>
+					  	</select>
+					  	<button>Filter</button>
+					</form>
+				</div>
+				<br>
 				<table class="table table-hover">
 				    <thead>
 				      <tr>

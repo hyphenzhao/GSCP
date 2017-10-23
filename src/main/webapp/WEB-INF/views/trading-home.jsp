@@ -56,13 +56,25 @@
     						${success}
     					</div>
     				</c:if>
-    			</div>
+    			
    			 	<nav class="nav nav-pills nav-fill">
   					<a class="nav-item nav-link" href="/gscp/trading/repository">Your repository</a>
 					<a class="nav-item nav-link" href="/gscp/trading/new_post">Post</a>
 					<a class="nav-item nav-link" href="/gscp/trading/market">Search</a>
 					<a class="nav-item nav-link" href="/gscp/trading/orders">Order</a>
 				</nav>
+				<hr>
+				<img src="<c:url value="/resources/images/Book.jpeg" />" width="600" height="400" alt="">
+				<hr>
+				<h4>
+					Get money back for books you no longer need  
+				</h4>
+				<h4>&</h4>
+				<h4>
+					Save money from buying Second-hand books
+				</h4>
+				</div>
+				
     		</div>
     	</div>
     </div>
