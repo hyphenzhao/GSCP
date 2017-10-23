@@ -10,10 +10,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.usyd.gscp.domain.Order;
+import com.usyd.gscp.domain.Book;
+import com.usyd.gscp.domain.Orders;
 
-@Repository(value = "orderDao")
-public class OrderDao{
+@Repository(value = "ordersDao")
+public class OrdersDao{
+	
 	@Resource
 	private SessionFactory sessionFactory;
 	
@@ -25,18 +27,35 @@ public class OrderDao{
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void saveOrder(Order order){
+	public void saveOrder(Orders order){
 		sessionFactory.getCurrentSession().save(order);
 	}
 	
-	public void updateOrder(Order order){
+	public void updateOrder(Orders order){
 		sessionFactory.getCurrentSession().update(order);
 	}
 	
-	public Order getOrderById(int id){
+	public void delete(Orders order){
+		sessionFactory.getCurrentSession().delete(order);
+	}
+	
+	public List getAllOrders() {
+    	Session session = sessionFactory.openSession();
+    	try{
+    		List result = session.createCriteria(Orders.class).list();
+    		session.close();
+    		return result;
+    	} catch(Exception e) {
+    		System.out.println("OrdersDao.java: Fail to get all books.");
+    	}
+    	session.close();
+    	return null;
+    }
+	
+	public Orders getOrderById(int id){
 		Session session = sessionFactory.openSession();
 		try{
-    		Order order = (Order) session.get(Order.class, id);
+    		Orders order = (Orders) session.get(Orders.class, id);
     		session.close();
     		return order;
     	} catch(Exception e) {
@@ -48,7 +67,7 @@ public class OrderDao{
 	
 	public List getOrderByBuyer(String buyer, int id){
 		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(Order.class);
+		Criteria criteria = session.createCriteria(Orders.class);
 		List result;
 		criteria.add(
 					Restrictions.eq(buyer, id)
@@ -60,7 +79,7 @@ public class OrderDao{
 	
 	public List getOrderByStatus(String status, String target) {
     	Session session = sessionFactory.openSession();
-    	Criteria criteria = session.createCriteria(Order.class);
+    	Criteria criteria = session.createCriteria(Orders.class);
     	List result;
     	criteria.add(
     				Restrictions.eq(status, target)
@@ -69,4 +88,6 @@ public class OrderDao{
     	session.close();
     	return result;
     }
+	
+	
 }

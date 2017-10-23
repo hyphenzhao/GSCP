@@ -14,8 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "orders")
+public class Orders{
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +23,9 @@ public class Order {
 	
 	@JoinColumn(table="user", name="id")
 	private int buyer;
+	
+	@JoinColumn(table="user", name="id")
+	private int seller;
 	
 	@JoinColumn(table="book", name="id")
 	private int item;
@@ -37,7 +40,7 @@ public class Order {
 	protected void onCreate() {
 		date = new Date();
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -52,6 +55,14 @@ public class Order {
 
 	public void setBuyer(int buyer) {
 		this.buyer = buyer;
+	}
+	
+	public int getSeller() {
+		return seller;
+	}
+
+	public void setSeller(int seller) {
+		this.seller = seller;
 	}
 	
 	public int getItem() {
@@ -77,5 +88,4 @@ public class Order {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
 }

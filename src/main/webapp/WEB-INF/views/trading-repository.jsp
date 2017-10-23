@@ -66,7 +66,7 @@
   					<a class="nav-item nav-link" href="/gscp/trading/repository">Your repository</a>
 					<a class="nav-item nav-link" href="/gscp/trading/new_post">Post</a>
 					<a class="nav-item nav-link" href="/gscp/trading/market">Search</a>
-					<a class="nav-item nav-link" href="/gscp/application/student/history">Order</a>
+					<a class="nav-item nav-link" href="/gscp/trading/orders">Order</a>
 				</nav>
 				<c:if test="${type == 'view'}">
  			 	<div class="table-responsive">          
@@ -81,6 +81,7 @@
 				        <th>Subject</th>
 				        <th>Price</th>
 				        <th>Status</th>
+				        <th>Edit</th>
 				        <th>Option</th>
 				      </tr>
 				    </thead>
@@ -97,7 +98,24 @@
 						        <td>${ book.subject }</td>
 						        <td>${ book.price }</td>
 						        <td>${ book.status }</td>
-						        <td><a href="/gscp/trading/repository/${count}" class="btn btn-primary">Edit</a></td>
+						        <td>
+						        	<a href="/gscp/trading/repository/${count}" class="btn btn-primary">Edit</a>
+						        </td>
+						        <td>
+				        			<c:if test="${book.status == 'Host'}">
+					        			<form action="/gscp/trading/repository/status" method="POST">
+					        				<input type="hidden" name = "book-id" value="${ book.id }">
+					        				<button type="submit" class="btn btn-info">Post</button>
+					        			</form>
+				        			</c:if>
+				        			<c:if test="${book.status == 'Post'}">
+					        			<form action="/gscp/trading/repository/status" method="POST">
+					        				<input type="hidden" name = "book-id" value="${ book.id }">
+					        				<button type="submit" class="btn btn-danger">Cancel</button>
+					        			</form>
+				        			</c:if>
+
+						        </td>
 					      	</tr>
 				    </c:forEach>
 				    </tbody>

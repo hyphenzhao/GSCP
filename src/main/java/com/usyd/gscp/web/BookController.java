@@ -20,10 +20,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.usyd.gscp.domain.User;
 import com.usyd.gscp.domain.Book;
-import com.usyd.gscp.domain.Order;
+import com.usyd.gscp.domain.Orders;
 import com.usyd.gscp.service.UserService;
 import com.usyd.gscp.service.BookService;
-import com.usyd.gscp.service.OrderService;
+import com.usyd.gscp.service.OrdersService;
 
 @Controller
 @SessionAttributes("current_user")
@@ -36,7 +36,7 @@ public class BookController{
 	private BookService bookService;
 	
 	@Autowired
-	private OrderService orderService;
+	private OrdersService orderService;
 	
 	@RequestMapping(value = "/trading/home", method = RequestMethod.GET)
 	public String welcome(Locale locale, Model model,
@@ -108,6 +108,26 @@ public class BookController{
 		return "redirect: /gscp/trading/home";
 	}
 
+	@RequestMapping(value = "/trading/repository/status", method = RequestMethod.POST)
+	public String changeStatus(Locale locale, Model model,
+			@ModelAttribute("current_user") User user,
+			@RequestParam("book-id") int bookId)
+	{
+		Book cBook = bookService.getBookById(bookId);
+		String cStatus = cBook.getStatus();
+		
+		if(cStatus.equals("Post")){
+			cBook.setStatus("Host");
+		}
+		else{
+			cBook.setStatus("Post");
+		}
+		
+		bookService.updateBook(cBook);
+		
+		return "redirect: /gscp/trading/repository";
+	}
+	
 	@RequestMapping(value = "/trading/repository/{bookNo}", method = RequestMethod.GET)
 	public String updateBookDetail(Locale locale, Model model,
 			@ModelAttribute("current_user") User user,
@@ -153,23 +173,87 @@ public class BookController{
 		
 		model.addAttribute("current_user", user);
 		model.addAttribute("books", books);
+		model.addAttribute("model", "no_filter");
 		
 		return "trading-market";
 	}
-
+	
+	@RequestMapping(value = "/trading/filtering/year", method = RequestMethod.POST)
+	public String filterBooksByYear(Locale locale, Model model,
+			@ModelAttribute("current_user") User use,
+			@RequestParam("year_selection") String year_selection){
+		
+		ArrayList<Book> books = bookService.getBookByStatus("POST");
+		ArrayList<Book> filtered_books = new ArrayList<Book>();
+		int selection = Integer.parseInt(year_selection);
+		
+		for (int counter = 0; counter < books.size(); counter++) { 	
+			Book cBook = bookService.getBookById(counter);
+			if(selection == 1 && cBook.getYear() < 2000 ){
+				filtered_books.add(cBook);
+         	}
+			else if(selection == 2 && cBook.getYear() >= 2000 ){
+				filtered_books.add(cBook);
+			}
+	    }
+		System.out.println("check!!!!");
+		System.out.println(year_selection);
+		
+		model.addAttribute("filtered_books", filtered_books);
+		model.addAttribute("model", "year");
+		
+		return "trading-market";
+		
+	}
+	
 	@RequestMapping(value = "/trading/new_order", method = RequestMethod.POST)
 	public String createNewOrder(Locale locale, Model model, 
 			@ModelAttribute("current_user") User user, 
 			@RequestParam("item") int itemId){
-		Order newOrder = new Order();
 		
+		Book cBook = bookService.getBookById(itemId);
+		
+		Orders newOrder = new Orders();	
 		newOrder.setBuyer(user.getId());
 		newOrder.setItem(itemId);
 		newOrder.setDate(new Date());
+		newOrder.setSeller(cBook.getOwner());
 		newOrder.setStatus("Completed");
+		
+		cBook.setOwner(user.getId());
+		cBook.setStatus("Host");
+		bookService.updateBook(cBook);
 		
 		orderService.createNewOrder(newOrder);
 		
-		return "redict: /gscp/trading/orders";
+		return "redirect: /gscp/trading/orders";
+	}
+	
+	@RequestMapping(value = "/trading/orders", method = RequestMethod.GET)
+	public String listMyOrders(Locale locale, Model model,
+			@ModelAttribute("current_user") User user){
+		ArrayList<Orders> orders = orderService.getOrderByBuerId(user.getId());
+		ArrayList<Book> books = bookService.getAllBooks();
+		ArrayList<User> users = userService.getAllUsers();
+		
+		model.addAttribute("current_user", user);
+		model.addAttribute("orders", orders);
+		model.addAttribute("books", books);
+		model.addAttribute("users", users);
+		
+		return "trading-orders";
+	}
+	
+	@RequestMapping(value = "/trading/updated_history", method = RequestMethod.POST)
+	public String deleteOrderHistory(Locale locale, Model model,
+			@ModelAttribute("current_user") User user,
+			@RequestParam("order-id") int orderId){
+		Orders cOrder = orderService.getOrderById(orderId);
+		
+		orderService.deleteOrder(cOrder);
+		System.out.println("check!!!!");
+		
+		return "redirect: /gscp/trading/orders";
+		
 	}
 }

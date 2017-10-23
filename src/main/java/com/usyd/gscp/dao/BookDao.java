@@ -71,6 +71,7 @@ public class BookDao {
     	session.close();
     	return result;
     }
+    
     public List getBookByStatus(String status, String target) {
     	Session session = sessionFactory.openSession();
     	Criteria criteria = session.createCriteria(Book.class);

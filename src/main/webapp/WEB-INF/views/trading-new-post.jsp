@@ -61,7 +61,7 @@
   					<a class="nav-item nav-link" href="/gscp/trading/repository">Your repository</a>
 					<a class="nav-item nav-link" href="/gscp/trading/new_post">Post</a>
 					<a class="nav-item nav-link" href="/gscp/trading/market">Search</a>
-					<a class="nav-item nav-link" href="/gscp/application/student/history">Order</a>
+					<a class="nav-item nav-link" href="/gscp/trading/orders">Order</a>
 				</nav>
 				<div class="col-12">
    			 		<form action="/gscp/trading/new_post" method="POST">

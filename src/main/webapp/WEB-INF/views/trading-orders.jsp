@@ -10,11 +10,6 @@
 		<script src="<c:url value="/resources/js/validator.min.js" />"></script>
 	</head>
 	<body>
-	<script>
-	function LinkFormatter(value, row, index) {
-		  return "<a href='"+row.url+"'>"+value+"</a>";
-		}
-    </script>
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
 			<img src="<c:url value="/resources/images/logo.png" />" width="30" height="30" alt="">
@@ -68,51 +63,58 @@
 					<a class="nav-item nav-link" href="/gscp/trading/market">Search</a>
 					<a class="nav-item nav-link" href="/gscp/trading/orders">Order</a>
 				</nav>
-				<form action="/gscp/trading/filtering/year" method="POST">
-				<label>Restrict the year</label>
-					<select name="year_selection">
-					    <option value="1">before 2000</option>
-					    <option value="2">after 2000</option>
-				  	</select>
-				  	
-				  	
-				</form>
+				
 				<table class="table table-hover">
 				    <thead>
 				      <tr>
 				        <th>#</th>
-				        <th>Title</th>
-				        <th>Edition</th>
-				        <th>Author</th>
-				        <th>Year</th>
-				        <th>Subject</th>
-				        <th>Price</th>
+				        <th>From</th>
+				        <th>To</th>
+				        <th>Item</th>
+				        <th>When</th>
+				        <th>Status</th>
 				        <th>Option</th>
 				      </tr>
 				    </thead>
-				    <c:if test="${model == 'no_filter'}">
-					    <tbody>
-					    <c:forEach items="${books}" var="book">
-					    	<tr>
-						    	<td>${ book.id }</td>
-						        <td>${ book.title }</td>
-						        <td>${ book.edition }</td>
-						        <td>${ book.author }</td>
-						        <td>${ book.year }</td>
-						        <td>${ book.subject }</td>
-						        <td>${ book.price }</td>
-						        <td>
-							        <c:if test="${book.owner != current_user.id }">
-							        	<form action="/gscp/trading/new_order" method="POST">
-							        		<input type="hidden" name = "item" value="${ book.id }">
-							        		<button type="submit" class="btn btn-primary">Buy</button>
-							        	</form>
-							        </c:if>
-						        </td>				    
-						    </tr>
-					    </c:forEach>
-					    </tbody>
-					 </c:if>
+				    
+				    <tbody>
+				    <c:choose>
+					    <c:when test="${not empty orders}">
+						    <c:forEach items="${orders}" var="order" >
+						    	<c:forEach items="${books}" var="book">
+						    		<c:if test="${book.id == order.item }">
+										<c:set var="item_title" value="${book.title}" scope="page"/>
+									</c:if>	
+								</c:forEach>
+								<c:forEach items="${users}" var="user">
+									<c:if test="${user.id == order.seller}">
+										<c:set var="seller_name" value="${user.username}" scope="page"/>
+									</c:if>
+									<c:if test="${user.id == order.buyer}">
+										<c:set var="buyer_name" value="${user.username}" scope="page"/>
+									</c:if>
+								</c:forEach>
+						    	<tr>
+							    	<td>${ order.id }</td>
+							        <td>${ seller_name }</td>
+							        <td>${ buyer_name }</td>
+							        <td>${ item_title }</td>
+							        <td>${ order.date }</td>
+							        <td>${ order.status }</td>
+							        <th>
+							        	<form action="/gscp/trading/updated_history" method="POST">
+					        				<input type="hidden" name = "order-id" value="${ order.id }">
+					        				<button type="submit" class="btn btn-danger">Delete</button>
+					        			</form>
+							        </th>
+							    </tr>
+					    	</c:forEach>
+					    </c:when>
+					    <c:otherwise>
+					    	<p>No order history available until now.</p>
+					    </c:otherwise>
+					</c:choose>
+				    </tbody>
 				 </table>
 			 </div>
 		 </div>
