@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.19, for osx10.12 (x86_64)
 --
--- Host: localhost    Database: gscp
+-- Host: localhost    Database: GSCP
 -- ------------------------------------------------------
 -- Server version	5.7.19
 
@@ -31,7 +31,7 @@ CREATE TABLE `application` (
   `title` text,
   `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,8 +40,39 @@ CREATE TABLE `application` (
 
 LOCK TABLES `application` WRITE;
 /*!40000 ALTER TABLE `application` DISABLE KEYS */;
-INSERT INTO `application` VALUES (16,2,'This is content',10,1,'This is title',1),(17,2,'Thank you',4,1,'Thanks',1),(18,2,'i want to apply',8,1,' hello',1);
+INSERT INTO `application` VALUES (16,2,'This is content',10,1,'This is title',1),(17,2,'Thank you',4,1,'Thanks',1),(18,2,'i want to apply',8,1,' hello',1),(19,2,'hhhhhhh',8,3,'let\'s go',0),(20,2,'LOL',2,3,'USYD YEAH!!!!!',0),(21,5,'HELP',11,3,'I am a graduate',0);
 /*!40000 ALTER TABLE `application` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `book`
+--
+
+DROP TABLE IF EXISTS `book`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `book` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` text,
+  `edition` int(11) DEFAULT NULL,
+  `owner` int(11) NOT NULL,
+  `price` int(11) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `title` text,
+  `year` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `book`
+--
+
+LOCK TABLES `book` WRITE;
+/*!40000 ALTER TABLE `book` DISABLE KEYS */;
+INSERT INTO `book` VALUES (1,'Ramakrishnan Ragh',3,3,40,'Post','computer','Database Management System',2003),(2,'Hayek Friedrich',4,3,15,'Post','Business','Business and Society',1982),(3,'Kamien Poger',3,4,40,'Post','Music','Music : an appreciation',2001),(4,'Anderson H',2,4,30,'Host','Math','An introduction to Linear algorithm',1996),(5,'Google',1,3,100,'Post','Spring','How to build a website?',2017),(6,'Youtube',2,4,100,'Post','Spring','MVC website design',2017),(7,'jeremy',1,6,100,'Host','computer','How to build a website ',2017),(8,'programmer',1,4,20,'Post','Spring','how to search the books?',2000),(9,'jeremy',1,4,20,'Post','Hibernate','how to update the database?',2017),(10,'jeremy',1,3,40,'Post','ELEC5619','Demo',2017),(11,'group GSCP',1,6,50,'Post','computer','elec5619demo',2017);
+/*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -83,7 +114,7 @@ CREATE TABLE `document` (
   `name` varchar(255) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +123,7 @@ CREATE TABLE `document` (
 
 LOCK TABLES `document` WRITE;
 /*!40000 ALTER TABLE `document` DISABLE KEYS */;
-INSERT INTO `document` VALUES (11,14,'Screen Shot 2017-10-10 at 1.01.51 pm.png','6OI31L1QYP3EW6FLAL.png'),(12,15,'Screen Shot 2017-10-10 at 1.17.11 pm.png','S6ITY5G3XQVO9YSZY9.png'),(13,16,'Screen Shot 2017-10-10 at 1.17.11 pm.png','0PB0BKN5VCNTISYHUX.png'),(14,17,'Screen Shot 2017-09-30 at 2.30.18 am.png','SZVDBN06XXLEF03HAW.png'),(15,18,'art 5622.docx','FKU0GQ90DYUVLHM3M8.docx');
+INSERT INTO `document` VALUES (11,14,'Screen Shot 2017-10-10 at 1.01.51 pm.png','6OI31L1QYP3EW6FLAL.png'),(12,15,'Screen Shot 2017-10-10 at 1.17.11 pm.png','S6ITY5G3XQVO9YSZY9.png'),(13,16,'Screen Shot 2017-10-10 at 1.17.11 pm.png','0PB0BKN5VCNTISYHUX.png'),(14,17,'Screen Shot 2017-09-30 at 2.30.18 am.png','SZVDBN06XXLEF03HAW.png'),(15,18,'art 5622.docx','FKU0GQ90DYUVLHM3M8.docx'),(16,19,'','FMDHKBBS3FNXK8X0GK.'),(17,20,'','7I7ZKMTFA70WMET52M.'),(18,21,'','OCGX8JSSGJBS2FWIDI.');
 /*!40000 ALTER TABLE `document` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,7 +168,7 @@ CREATE TABLE `forumcomment` (
   `userId` int(11) NOT NULL,
   `visability` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +177,7 @@ CREATE TABLE `forumcomment` (
 
 LOCK TABLES `forumcomment` WRITE;
 /*!40000 ALTER TABLE `forumcomment` DISABLE KEYS */;
-INSERT INTO `forumcomment` VALUES (1,'Hello this is a comment example',2,'2017-10-12','Hello',1,''),(2,'Hello this is another comment example',2,'2017-10-12','Hello again',1,''),(3,'Delete TEST',3,'2017-10-12','Delete TEST',2,''),(4,'HH',2,'2017-10-12','Yo',2,'\0'),(5,'HAHhaha',2,'2017-10-12','YOOYOY',2,'\0'),(6,'lkjlk',5,'2017-10-12','hjkhkj',2,'\0'),(7,'kjljkl',3,'2017-10-13','jhkjhk',2,'\0'),(8,';lkl;',3,'2017-10-13','lk;lk',2,'');
+INSERT INTO `forumcomment` VALUES (1,'Hello this is a comment example',2,'2017-10-12','Hello',1,''),(2,'Hello this is another comment example',2,'2017-10-12','Hello again',1,''),(3,'Delete TEST',3,'2017-10-12','Delete TEST',2,''),(4,'HH',2,'2017-10-12','Yo',2,'\0'),(5,'HAHhaha',2,'2017-10-12','YOOYOY',2,'\0'),(6,'lkjlk',5,'2017-10-12','hjkhkj',2,'\0'),(7,'kjljkl',3,'2017-10-13','jhkjhk',2,'\0'),(8,';lkl;',3,'2017-10-13','lk;lk',2,''),(9,'hhhhhhhhh',6,'2017-10-15','How does My comments works?',3,'\0'),(10,'hhhhhhhh',6,'2017-10-17','Second comment',3,'\0'),(11,'hhhhhhhh',8,'2017-10-18','testing update',3,''),(12,'I HOPE',8,'2017-10-18','Does it work?',3,'\0'),(13,'I HOPE',8,'2017-10-18','Does it work?',3,'');
 /*!40000 ALTER TABLE `forumcomment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +196,7 @@ CREATE TABLE `forumcontent` (
   `userId` int(11) NOT NULL,
   `visability` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +205,7 @@ CREATE TABLE `forumcontent` (
 
 LOCK TABLES `forumcontent` WRITE;
 /*!40000 ALTER TABLE `forumcontent` DISABLE KEYS */;
-INSERT INTO `forumcontent` VALUES (2,'Hello this is a topic example','2017-10-12','Hello',1,''),(3,'Delete TEST','2017-10-12','Delete TEST',2,''),(4,'Hyphen zhao content','2017-10-12','Hyphen Zhao',2,''),(5,'kjkljkljl','2017-10-12','jlkjlk',2,'\0'),(6,'jlkjlkjnlknlkn','2017-10-13','ljkljklj',2,'');
+INSERT INTO `forumcontent` VALUES (2,'Hello this is a topic example','2017-10-12','Hello',1,''),(3,'Delete TEST','2017-10-12','Delete TEST',2,''),(4,'Hyphen zhao content','2017-10-12','Hyphen Zhao',2,''),(5,'kjkljkljl','2017-10-12','jlkjlk',2,'\0'),(6,'jlkjlkjnlknlkn','2017-10-13','ljkljklj',2,''),(7,'any issues about trading second-books','2017-10-14','trading',1,''),(8,'testing my comments','2017-10-15','First Topic',3,'');
 /*!40000 ALTER TABLE `forumcontent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +226,7 @@ CREATE TABLE `house` (
   `suburb` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,6 +237,59 @@ LOCK TABLES `house` WRITE;
 /*!40000 ALTER TABLE `house` DISABLE KEYS */;
 INSERT INTO `house` VALUES (1,1,'Available : 10th November\nLease Period:From Minimum 6 months\n\nThis apartment features:\n- Quality Three Bedroom Apartment with security parking\n- Bedroom with Built Ins\n- Internal Laundry with Dryer\n- Island benches in most kitchens\n\nFeatures\nIntercom\nAir Conditioning\nBuilt-In Wardrobes\nClose to Schools\nClose to Transport\nSecurity Access\nHow to apply:\ncontact with Mr.Pan. email:aaa@aaa.com\n','1.jpg',2042,240,'newtown','house'),(2,1,'Available : 10th November\nLease Period:From Minimum 6 months\n\nThis apartment features:\n- Quality Three Bedroom Apartment with security parking\n- Bedroom with Built Ins\n- Internal Laundry with Dryer\n- Island benches in most kitchens\n\nFeatures\nIntercom\nAir Conditioning\nBuilt-In Wardrobes\nClose to Schools\nClose to Transport\nSecurity Access\nHow to apply:\ncontact with Mr.Pan. email:aaa@aaa.com\n','2.jpg',2007,260,'ultimal','house'),(3,1,'Available : 10th November\nLease Period:From Minimum 6 months\n\nThis apartment features:\n- Quality Three Bedroom Apartment with security parking\n- Bedroom with Built Ins\n- Internal Laundry with Dryer\n- Island benches in most kitchens\n\nFeatures\nIntercom\nAir Conditioning\nBuilt-In Wardrobes\nClose to Schools\nClose to Transport\nSecurity Access\nHow to apply:\ncontact with Mr.Pan. email:aaa@aaa.com\n','3.jpeg',2050,350,'comperdown','house'),(4,2,'Available : 10th November\nLease Period:From Minimum 6 months\n\nThis apartment features:\n- Quality Three Bedroom Apartment with security parking\n- Bedroom with Built Ins\n- Internal Laundry with Dryer\n- Island benches in most kitchens\n\nFeatures\nIntercom\nAir Conditioning\nBuilt-In Wardrobes\nClose to Schools\nClose to Transport\nSecurity Access\nHow to apply:\ncontact with Mr.Pan. email:aaa@aaa.com\n','4.jpg',2050,475,'comperdown','apartment'),(5,3,'Available : 10th November\nLease Period:From Minimum 6 months\n\nThis apartment features:\n- Quality Three Bedroom Apartment with security parking\n- Bedroom with Built Ins\n- Internal Laundry with Dryer\n- Island benches in most kitchens\n\nFeatures\nIntercom\nAir Conditioning\nBuilt-In Wardrobes\nClose to Schools\nClose to Transport\nSecurity Access\nHow to apply:\ncontact with Mr.Pan. email:aaa@aaa.com\n','5.jpeg',2008,255,'darlington','unit'),(6,2,'Available : 10th November\nLease Period:From Minimum 6 months\n\nThis apartment features:\n- Quality Three Bedroom Apartment with security parking\n- Bedroom with Built Ins\n- Internal Laundry with Dryer\n- Island benches in most kitchens\n\nFeatures\nIntercom\nAir Conditioning\nBuilt-In Wardrobes\nClose to Schools\nClose to Transport\nSecurity Access\nHow to apply:\ncontact with Mr.Pan. email:aaa@aaa.com\n','6.jpg',2042,303,'newtown','unit'),(7,1,'Available : 10th November\nLease Period:From Minimum 6 months\n\nThis apartment features:\n- Quality Three Bedroom Apartment with security parking\n- Bedroom with Built Ins\n- Internal Laundry with Dryer\n- Island benches in most kitchens\n\nFeatures\nIntercom\nAir Conditioning\nBuilt-In Wardrobes\nClose to Schools\nClose to Transport\nSecurity Access\nHow to apply:\ncontact with Mr.Pan. email:aaa@aaa.com\n','7.jpg',2042,311,'newtown','apartment'),(8,2,'Available : 10th November\nLease Period:From Minimum 6 months\n\nThis apartment features:\n- Quality Three Bedroom Apartment with security parking\n- Bedroom with Built Ins\n- Internal Laundry with Dryer\n- Island benches in most kitchens\n\nFeatures\nIntercom\nAir Conditioning\nBuilt-In Wardrobes\nClose to Schools\nClose to Transport\nSecurity Access\nHow to apply:\ncontact with Mr.Pan. email:aaa@aaa.com\n','8.jpg',2037,450,'glebe','apartment'),(9,5,'Available : 10th November\nLease Period:From Minimum 6 months\n\nThis apartment features:\n- Quality Three Bedroom Apartment with security parking\n- Bedroom with Built Ins\n- Internal Laundry with Dryer\n- Island benches in most kitchens\n\nFeatures\nIntercom\nAir Conditioning\nBuilt-In Wardrobes\nClose to Schools\nClose to Transport\nSecurity Access\nHow to apply:\ncontact with Mr.Pan. email:aaa@aaa.com\n','9.png',2037,670,'glebe','house');
 /*!40000 ALTER TABLE `house` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `buyer` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `item` int(11) NOT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `seller` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (13,3,'2017-10-23',2,'Completed',4),(14,6,'2017-10-23',7,'Completed',3);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `person`
+--
+
+DROP TABLE IF EXISTS `person`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `person` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `age` int(11) DEFAULT NULL,
+  `first` varchar(255) DEFAULT NULL,
+  `last` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `person`
+--
+
+LOCK TABLES `person` WRITE;
+/*!40000 ALTER TABLE `person` DISABLE KEYS */;
+/*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -253,7 +337,7 @@ CREATE TABLE `user` (
   `username` varchar(255) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,7 +346,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'hiphon@123.com','Haifeng','Zhao','E10ADC3949BA59ABBE56E057F20F883E','+61414900316',32,'Hiphon',NULL),(2,'hzha7521@uni.sydney.edu.au','Hyphen','Zhao','E10ADC3949BA59ABBE56E057F20F883E','+61412345678',16,'Hyphen',NULL);
+INSERT INTO `user` VALUES (1,'hiphon@123.com','Haifeng','Zhao','E10ADC3949BA59ABBE56E057F20F883E','+61414900316',32,'Hiphon',NULL),(2,'hzha7521@uni.sydney.edu.au','Hyphen','Zhao','E10ADC3949BA59ABBE56E057F20F883E','+61412345678',16,'Hyphen',NULL),(3,'jili4373@uni.sydney.edu.au','jeremy','li','F30AA7A662C728B7407C54AE6BFD27D1','123456',32,'jeremy',NULL),(4,'test@gmail.com','test','hhh','F30AA7A662C728B7407C54AE6BFD27D1','123456',0,'test',NULL),(5,'agent@gmail.com','agent','agent','F30AA7A662C728B7407C54AE6BFD27D1','123456',16,'agent',NULL),(6,'demo@uni.sydney.edu.au','jinhe','li','F30AA7A662C728B7407C54AE6BFD27D1','123456',0,'demo',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -275,4 +359,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-14 13:57:58
+-- Dump completed on 2017-10-23 20:50:12
