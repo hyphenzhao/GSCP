@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.usyd.gscp.dao.HouseDao;
+import com.usyd.gscp.domain.Application;
 import com.usyd.gscp.domain.House;
 
 @Service(value = "houseService")
@@ -85,6 +86,8 @@ public class HouseService {
 		ArrayList<House> result = (ArrayList<House>)houseDao.getAllHouses();
 		return result;
 	}
-	
+	public void uploadHouse(House house) {
+		houseDao.saveHouse(house);
+	}
 	
 }

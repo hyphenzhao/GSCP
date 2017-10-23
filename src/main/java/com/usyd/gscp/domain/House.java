@@ -25,7 +25,7 @@ public class House {
 	private int price;
 	
 	@Column(name = "suburb")
-	private String subrub;
+	private String suburb;
 	
 	@Column(name = "postcode")
 	private int postcode;
@@ -93,11 +93,11 @@ public class House {
 	}
 
 	public String getSubrub() {
-		return subrub;
+		return suburb;
 	}
 
-	public void setSubrub(String subrub) {
-		this.subrub = subrub;
+	public void setSubrub(String suburb) {
+		this.suburb = suburb;
 	}
 	
 	
