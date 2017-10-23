@@ -60,7 +60,7 @@ public class UserService {
     	userDao.updateUser(user);
     }
     
-    private String hashCode(String input) {
+    public String hashCode(String input) {
     	
     	try {
     		MessageDigest md = MessageDigest.getInstance("MD5");

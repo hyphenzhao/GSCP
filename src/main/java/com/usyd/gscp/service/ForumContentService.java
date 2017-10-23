@@ -31,6 +31,7 @@ public class ForumContentService {
 	
 	public ForumContent getCotentById(int id) {
 		ArrayList<ForumContent> result = (ArrayList<ForumContent>) forumContentDao.getContentById("id", id);
+		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
 	

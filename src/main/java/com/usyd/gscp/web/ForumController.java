@@ -126,7 +126,7 @@ public class ForumController {
 	}
 	
 	@RequestMapping(value = "/forum/comments/{commentId}", method = RequestMethod.GET)
-	public String listMyComments(Locale locale, Model model,
+	public String getSpecificComments(Locale locale, Model model,
 			@ModelAttribute("current_user") User user,
 			@PathVariable int commentId) {
 		ForumComment comment = forumCommentService.getCommentById(commentId);
@@ -137,7 +137,6 @@ public class ForumController {
 	@RequestMapping(value = "/forum/new/comment", method = RequestMethod.POST)
 	public String createNewComment(Locale locale, Model model,
 			@ModelAttribute("current_user") User user,
-			RedirectAttributes attributes,
 			@RequestParam("title") String title,
 			@RequestParam("content") String content,
 			@RequestParam("topic") int topicId) {
@@ -152,7 +151,6 @@ public class ForumController {
 		
 		forumCommentService.createNewComment(newComment);
 		
-		attributes.addFlashAttribute("success", "New topic has been created!");
 		return "redirect: /gscp/forum/topics/" + topicId;
 	}
 	
@@ -167,7 +165,6 @@ public class ForumController {
 	@RequestMapping(value = "/forum/new/topic", method = RequestMethod.POST)
 	public String createNewTopic(Locale locale, Model model,
 			@ModelAttribute("current_user") User user,
-			RedirectAttributes attributes,
 			@RequestParam("title") String title,
 			@RequestParam("content") String content) {
 		ForumContent newTopic = new ForumContent();
@@ -180,7 +177,6 @@ public class ForumController {
 		
 		forumContentService.createNewContent(newTopic);
 		
-		attributes.addFlashAttribute("success", "New topic has been created!");
 		return "redirect: /gscp/forum/home";
 	}
 	

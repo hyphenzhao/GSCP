@@ -31,6 +31,7 @@ public class ForumCommentService {
 	
 	public ForumComment getCommentById(int id) {
 		ArrayList<ForumComment> result = (ArrayList<ForumComment>) forumCommentDao.getCommentById("id", id);
+		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
 	
