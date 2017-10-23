@@ -120,6 +120,8 @@ public class ApplicationControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testNewApplicationView() throws Exception{
     	ArrayList<University> unis = uniService.getAllUnis();
 		ArrayList<Degree> degrees = degreeService.getAllDegrees();
@@ -138,6 +140,8 @@ public class ApplicationControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testHistoryApplicationView() throws Exception{
     	User user = userService.getUserById(1); 
     	request.setRequestURI("/application/student/history");
@@ -173,6 +177,8 @@ public class ApplicationControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testHistoryApplicationDetail() throws Exception{
     	User user = userService.getUserById(1); 
     	request.setRequestURI("/application/student/history/1");
@@ -212,6 +218,8 @@ public class ApplicationControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testStudentApplicationDetailUpdate() throws Exception{
     	User user = userService.getUserById(1); 
     	request.setRequestURI("/application/student/history");
@@ -227,6 +235,8 @@ public class ApplicationControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testAgentApplicationDetail() throws Exception{
     	User user = userService.getUserById(2); 
     	request.setRequestURI("/application/agent/1");
@@ -266,6 +276,8 @@ public class ApplicationControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testAgentApplicationDetailUpdate() throws Exception{
     	User user = userService.getUserById(2); 
     	request.setRequestURI("/application/agent");

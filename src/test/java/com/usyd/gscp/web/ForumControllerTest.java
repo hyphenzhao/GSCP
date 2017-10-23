@@ -63,6 +63,8 @@ public class ForumControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testWelcome() throws Exception{
     	User user = userService.getUserById(1); 
         request.setRequestURI("/forum/home");
@@ -91,6 +93,8 @@ public class ForumControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testListMyTopics() throws Exception{
     	User user = userService.getUserById(1); 
         request.setRequestURI("/forum/topics");
@@ -121,6 +125,8 @@ public class ForumControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testGetSpecificTopic() throws Exception{
     	User user = userService.getUserById(1); 
         request.setRequestURI("/forum/topics/2");
@@ -142,6 +148,8 @@ public class ForumControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testListMyComments() throws Exception{
     	User user = userService.getUserById(1); 
         request.setRequestURI("/forum/comments");
@@ -172,6 +180,8 @@ public class ForumControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testGetSpecificComments() throws Exception{
     	User user = userService.getUserById(1); 
         request.setRequestURI("/forum/comments/2");
@@ -186,6 +196,8 @@ public class ForumControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testCreateNewComment() throws Exception{
     	User user = userService.getUserById(1); 
         request.setRequestURI("/forum/new/comment");
@@ -203,6 +215,8 @@ public class ForumControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testNewTopicForm() throws Exception{
     	User user = userService.getUserById(1); 
         request.setRequestURI("/forum/new/topic");
@@ -216,6 +230,8 @@ public class ForumControllerTest {
     }
     
     @Test
+    @Transactional
+    @Rollback(true)
     public void testCreateNewTopic() throws Exception{
     	User user = userService.getUserById(1); 
         request.setRequestURI("/forum/new/topic");

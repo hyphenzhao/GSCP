@@ -34,12 +34,12 @@
         			</li>
       			</ul>
       			<ul class="navbar-nav mr-auto">
-        			<li class="nav-item">
+        			<li class="nav-item active">
           				<a class="nav-link" href="/gscp/trading/home">Trading</a>
         			</li>
       			</ul>
       			<ul class="navbar-nav mr-auto">
-        			<li class="nav-item active">
+        			<li class="nav-item">
           				<a class="nav-link" href="/gscp/forum/home">Forum  <span class="sr-only">(current)</span></a>
         			</li>
       			</ul>
