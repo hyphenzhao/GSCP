@@ -68,14 +68,26 @@
 					<a class="nav-item nav-link" href="/gscp/trading/market">Search</a>
 					<a class="nav-item nav-link" href="/gscp/trading/orders">Order</a>
 				</nav>
-				<form action="/gscp/trading/filtering/year" method="POST">
-				<label>Restrict the year</label>
+				<form action="/gscp/trading/filtering" method="POST">
+					<label>Year Limitation</label>
 					<select name="year_selection">
+						<option value="0">No restriction</option>
 					    <option value="1">before 2000</option>
 					    <option value="2">after 2000</option>
+				  	</select>	  	
+				  	<label>Subject Limitation</label>
+					<select name="subject_selection">
+						<option value="0">No restriction</option>
+					    <option value="1">computer</option>
+					    <option value="2">Spring</option>
 				  	</select>
-				  	
-				  	
+				  	<label>Price Limitation</label>
+				  	<select name="price_selection">
+						<option value="0">No restriction</option>
+					    <option value="1">lower than 50</option>
+					    <option value="2">higher than 50</option>
+				  	</select>
+				  	<button>Filter</button>
 				</form>
 				<table class="table table-hover">
 				    <thead>
@@ -93,6 +105,29 @@
 				    <c:if test="${model == 'no_filter'}">
 					    <tbody>
 					    <c:forEach items="${books}" var="book">
+					    	<tr>
+						    	<td>${ book.id }</td>
+						        <td>${ book.title }</td>
+						        <td>${ book.edition }</td>
+						        <td>${ book.author }</td>
+						        <td>${ book.year }</td>
+						        <td>${ book.subject }</td>
+						        <td>${ book.price }</td>
+						        <td>
+							        <c:if test="${book.owner != current_user.id }">
+							        	<form action="/gscp/trading/new_order" method="POST">
+							        		<input type="hidden" name = "item" value="${ book.id }">
+							        		<button type="submit" class="btn btn-primary">Buy</button>
+							        	</form>
+							        </c:if>
+						        </td>				    
+						    </tr>
+					    </c:forEach>
+					    </tbody>
+					 </c:if>
+					 <c:if test="${model == 'filtering'}">
+					 	<tbody>
+					    <c:forEach items="${filtered_books}" var="book">
 					    	<tr>
 						    	<td>${ book.id }</td>
 						        <td>${ book.title }</td>

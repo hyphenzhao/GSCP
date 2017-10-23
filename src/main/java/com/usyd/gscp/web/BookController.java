@@ -178,29 +178,77 @@ public class BookController{
 		return "trading-market";
 	}
 	
-	@RequestMapping(value = "/trading/filtering/year", method = RequestMethod.POST)
+	@RequestMapping(value = "/trading/filtering", method = RequestMethod.POST)
 	public String filterBooksByYear(Locale locale, Model model,
 			@ModelAttribute("current_user") User use,
-			@RequestParam("year_selection") String year_selection){
+			@RequestParam("year_selection") String year_selection,
+			@RequestParam("subject_selection") String subject_selection,
+			@RequestParam("price_selection") String price_selection){
 		
 		ArrayList<Book> books = bookService.getBookByStatus("POST");
-		ArrayList<Book> filtered_books = new ArrayList<Book>();
-		int selection = Integer.parseInt(year_selection);
+		ArrayList<Book> filtered_by_year = new ArrayList<Book>();
+		ArrayList<Book> filtered_by_subject = new ArrayList<Book>();
+		ArrayList<Book> filtered_by_price = new ArrayList<Book>();
 		
-		for (int counter = 0; counter < books.size(); counter++) { 	
-			Book cBook = bookService.getBookById(counter);
-			if(selection == 1 && cBook.getYear() < 2000 ){
-				filtered_books.add(cBook);
-         	}
-			else if(selection == 2 && cBook.getYear() >= 2000 ){
-				filtered_books.add(cBook);
-			}
-	    }
-		System.out.println("check!!!!");
-		System.out.println(year_selection);
+		System.out.println(year_selection+subject_selection+price_selection);
+		int selection1 = Integer.parseInt(year_selection);
+		int selection2 = Integer.parseInt(subject_selection);
+		int selection3 = Integer.parseInt(price_selection);
 		
-		model.addAttribute("filtered_books", filtered_books);
-		model.addAttribute("model", "year");
+		if(selection1 != 0){
+			for (int counter = 0; counter < books.size(); counter++) { 	
+				Book cBook = bookService.getBookById(counter+1);
+				if(selection1 == 1 && cBook.getYear() < 2000 ){
+					filtered_by_year.add(cBook);
+	         	}
+				else if(selection1 == 2 && cBook.getYear() >= 2000 ){
+					filtered_by_year.add(cBook);
+				}
+		    }
+		}
+		else{
+			filtered_by_year = books;
+		}
+		if(selection2 != 0){
+			int scope = filtered_by_year.size();
+			for (int counter = 0; counter < scope; counter++) { 	
+				Book cBook = filtered_by_year.get(counter);
+				//System.out.println(counter+cBook.getSubject());
+				if((selection2 == 1) && ("computer".equals(cBook.getSubject())))
+				{
+					//System.out.println("removed  "+cBook.getSubject());
+					filtered_by_subject.add(cBook);
+	         	}
+				else if((selection2 == 2) && ("Spring".equals(cBook.getSubject())))
+				{
+					filtered_by_subject.add(cBook);
+				}
+				//System.out.println(filtered_by_year.size());
+				//System.out.println(counter+"After if check!!!!!");
+		    }
+		}
+		else{
+			filtered_by_subject = filtered_by_year;
+		}
+		if(selection3 != 0){
+			int scope = filtered_by_subject.size();
+			for (int counter = 0; counter < scope; counter++) { 	
+				Book cBook = filtered_by_subject.get(counter);
+				if(selection3 == 1 && cBook.getPrice() < 50){
+					filtered_by_price.add(cBook);
+	         	}
+				else if(selection3 == 2 && cBook.getPrice() >= 50 ){
+					filtered_by_price.add(cBook);
+				}
+		    }
+		}
+		else{
+			filtered_by_price = filtered_by_subject;
+		}
+		
+		
+		model.addAttribute("filtered_books", filtered_by_price);
+		model.addAttribute("model", "filtering");
 		
 		return "trading-market";
 		
