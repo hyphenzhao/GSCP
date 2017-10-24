@@ -223,8 +223,7 @@ public class BookController{
 				{
 					filtered_by_subject.add(cBook);
 				}
-				//System.out.println(filtered_by_year.size());
-				//System.out.println(counter+"After if check!!!!!");
+
 		    }
 		}
 		else{
