@@ -17,9 +17,13 @@ As a user, you can post a house by inputting essential information (like weekly 
 
 To expand the functionalities of the main project, an useful second-hand bookshop will be integrated to help international students do some preparation before the start of semester. Furthermore, the user interface will be designed in simple way to realize the high efficiency of trading process. 
 The second-hand textbooks shop includes following features: 
+
 * Any registered user could acts as buyer or seller.
+
 * User must provide complete book information if he want to post item to book market.
+
 * User can filter the searching results by price, subject and year of publication.
+
 * System keeps all historical orders whether canceled or completed.
 
 ### Forum Platform ###
