@@ -6,7 +6,7 @@ This is an experiment website for course ELEC5619. This website includes four ap
 + Oversea University Application
 + Accomadation Application
 + Second-hand Trading Platform
-+ Forum Application
++ Forum Platform
 
 ## Contributors ##
 + Haifeng Zhao
