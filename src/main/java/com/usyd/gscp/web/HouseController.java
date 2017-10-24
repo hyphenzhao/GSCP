@@ -99,7 +99,7 @@ public class HouseController {
 		house.setImage(imgName);
 		
 		houseService.uploadHouse(house);
-		String filePath = "/Users/PanHongLiang/Desktop/gscp-globalstudentcommunicationplatform/src/main/webapp/resources/images/"
+		String filePath = "/Users/haifengzhao/Documents/workspace-sts-3.7.3.RELEASE/gscp-globalstudentcommunicationplatform/src/main/webapp/resources/images/"
 				+ imgName;
 		System.out.println(filePath);
 		File dest = new File(filePath);

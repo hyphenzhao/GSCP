@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.19, for osx10.12 (x86_64)
 --
--- Host: localhost    Database: GSCP
+-- Host: localhost    Database: gscp
 -- ------------------------------------------------------
 -- Server version	5.7.19
 
@@ -31,7 +31,7 @@ CREATE TABLE `application` (
   `title` text,
   `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `application` (
 
 LOCK TABLES `application` WRITE;
 /*!40000 ALTER TABLE `application` DISABLE KEYS */;
-INSERT INTO `application` VALUES (16,2,'This is content',10,1,'This is title',1),(17,2,'Thank you',4,1,'Thanks',1),(18,2,'i want to apply',8,1,' hello',1),(19,2,'hhhhhhh',8,3,'let\'s go',0),(20,2,'LOL',2,3,'USYD YEAH!!!!!',0),(21,5,'HELP',11,3,'I am a graduate',0);
+INSERT INTO `application` VALUES (16,2,'content',10,1,'title',1),(17,2,'Thank you',4,1,'Thanks',1),(18,2,'i want to apply',8,1,' hello',1),(19,2,'ifi',5,1,'fdsaifdi',2),(20,2,'afdasdf',1,1,'Dsdfds',2);
 /*!40000 ALTER TABLE `application` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +62,7 @@ CREATE TABLE `book` (
   `title` text,
   `year` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +114,7 @@ CREATE TABLE `document` (
   `name` varchar(255) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +123,7 @@ CREATE TABLE `document` (
 
 LOCK TABLES `document` WRITE;
 /*!40000 ALTER TABLE `document` DISABLE KEYS */;
-INSERT INTO `document` VALUES (11,14,'Screen Shot 2017-10-10 at 1.01.51 pm.png','6OI31L1QYP3EW6FLAL.png'),(12,15,'Screen Shot 2017-10-10 at 1.17.11 pm.png','S6ITY5G3XQVO9YSZY9.png'),(13,16,'Screen Shot 2017-10-10 at 1.17.11 pm.png','0PB0BKN5VCNTISYHUX.png'),(14,17,'Screen Shot 2017-09-30 at 2.30.18 am.png','SZVDBN06XXLEF03HAW.png'),(15,18,'art 5622.docx','FKU0GQ90DYUVLHM3M8.docx'),(16,19,'','FMDHKBBS3FNXK8X0GK.'),(17,20,'','7I7ZKMTFA70WMET52M.'),(18,21,'','OCGX8JSSGJBS2FWIDI.');
+INSERT INTO `document` VALUES (11,14,'Screen Shot 2017-10-10 at 1.01.51 pm.png','6OI31L1QYP3EW6FLAL.png'),(12,15,'Screen Shot 2017-10-10 at 1.17.11 pm.png','S6ITY5G3XQVO9YSZY9.png'),(13,16,'Screen Shot 2017-10-10 at 1.17.11 pm.png','0PB0BKN5VCNTISYHUX.png'),(14,17,'Screen Shot 2017-09-30 at 2.30.18 am.png','SZVDBN06XXLEF03HAW.png'),(15,18,'art 5622.docx','FKU0GQ90DYUVLHM3M8.docx'),(16,19,'','BES1A0YYCV3IZYU2UL.'),(17,20,'thesis_figure.jpg','9DQ1C7R0MCUH5RPUHG.jpg');
 /*!40000 ALTER TABLE `document` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +168,7 @@ CREATE TABLE `forumcomment` (
   `userId` int(11) NOT NULL,
   `visability` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +177,7 @@ CREATE TABLE `forumcomment` (
 
 LOCK TABLES `forumcomment` WRITE;
 /*!40000 ALTER TABLE `forumcomment` DISABLE KEYS */;
-INSERT INTO `forumcomment` VALUES (1,'Hello this is a comment example',2,'2017-10-12','Hello',1,''),(2,'Hello this is another comment example',2,'2017-10-12','Hello again',1,''),(3,'Delete TEST',3,'2017-10-12','Delete TEST',2,''),(4,'HH',2,'2017-10-12','Yo',2,'\0'),(5,'HAHhaha',2,'2017-10-12','YOOYOY',2,'\0'),(6,'lkjlk',5,'2017-10-12','hjkhkj',2,'\0'),(7,'kjljkl',3,'2017-10-13','jhkjhk',2,'\0'),(8,';lkl;',3,'2017-10-13','lk;lk',2,''),(9,'hhhhhhhhh',6,'2017-10-15','How does My comments works?',3,'\0'),(10,'hhhhhhhh',6,'2017-10-17','Second comment',3,'\0'),(11,'hhhhhhhh',8,'2017-10-18','testing update',3,''),(12,'I HOPE',8,'2017-10-18','Does it work?',3,'\0'),(13,'I HOPE',8,'2017-10-18','Does it work?',3,'');
+INSERT INTO `forumcomment` VALUES (1,'Hello this is a comment example',2,'2017-10-12','Hello',1,''),(2,'Hello this is another comment example',2,'2017-10-12','Hello again',1,''),(3,'Delete TEST',3,'2017-10-12','Delete TEST',2,''),(4,'HH',2,'2017-10-12','Yo',2,''),(5,'HAHhaha',2,'2017-10-12','YOOYOY',2,''),(6,'lkjlk',5,'2017-10-12','hjkhkj',2,''),(7,'kjljkl',3,'2017-10-13','jhkjhk',2,''),(8,';lkl;',3,'2017-10-13','lk;lk',2,''),(9,'fuckyou',7,'2017-10-14','Hello, fuck you',2,''),(10,'Hi',7,'2017-10-14','Hello',1,''),(16,'content',2,'2017-10-24','title',1,''),(17,'content',2,'2017-10-24','title',1,''),(18,'content',2,'2017-10-24','title',1,''),(19,'content',2,'2017-10-24','title',1,''),(20,'content',2,'2017-10-24','title',1,''),(21,'content',2,'2017-10-24','title',1,''),(22,'content',2,'2017-10-24','title',1,''),(23,'content',2,'2017-10-24','title',1,'');
 /*!40000 ALTER TABLE `forumcomment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +196,7 @@ CREATE TABLE `forumcontent` (
   `userId` int(11) NOT NULL,
   `visability` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,7 +205,7 @@ CREATE TABLE `forumcontent` (
 
 LOCK TABLES `forumcontent` WRITE;
 /*!40000 ALTER TABLE `forumcontent` DISABLE KEYS */;
-INSERT INTO `forumcontent` VALUES (2,'Hello this is a topic example','2017-10-12','Hello',1,''),(3,'Delete TEST','2017-10-12','Delete TEST',2,''),(4,'Hyphen zhao content','2017-10-12','Hyphen Zhao',2,''),(5,'kjkljkljl','2017-10-12','jlkjlk',2,'\0'),(6,'jlkjlkjnlknlkn','2017-10-13','ljkljklj',2,''),(7,'any issues about trading second-books','2017-10-14','trading',1,''),(8,'testing my comments','2017-10-15','First Topic',3,'');
+INSERT INTO `forumcontent` VALUES (2,'Hello this is a topic example','2017-10-12','Hello',1,''),(3,'Delete TEST','2017-10-12','Delete TEST',2,''),(4,'Hyphen zhao content','2017-10-12','Hyphen Zhao',2,''),(5,'kjkljkljl','2017-10-12','jlkjlk',2,''),(6,'jlkjlkjnlknlkn','2017-10-13','ljkljklj',2,''),(7,'Hello, hI','2017-10-14','Hello ',2,''),(8,'DSAFASDFAS','2017-10-23','fDSAFDAS',2,''),(11,'content','2017-10-24','title',1,''),(12,'content','2017-10-24','title',1,''),(13,'content','2017-10-24','title',1,''),(14,'content','2017-10-24','title',1,''),(15,'content','2017-10-24','title',1,''),(16,'content','2017-10-24','title',1,'');
 /*!40000 ALTER TABLE `forumcontent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +226,7 @@ CREATE TABLE `house` (
   `suburb` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,10 +251,10 @@ CREATE TABLE `orders` (
   `buyer` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `item` int(11) NOT NULL,
-  `status` varchar(255) DEFAULT NULL,
   `seller` int(11) NOT NULL,
+  `status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,31 +265,6 @@ LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` VALUES (13,3,'2017-10-23',2,'Completed',4),(14,6,'2017-10-23',7,'Completed',3);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `person`
---
-
-DROP TABLE IF EXISTS `person`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `person` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `age` int(11) DEFAULT NULL,
-  `first` varchar(255) DEFAULT NULL,
-  `last` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `person`
---
-
-LOCK TABLES `person` WRITE;
-/*!40000 ALTER TABLE `person` DISABLE KEYS */;
-/*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -337,7 +312,7 @@ CREATE TABLE `user` (
   `username` varchar(255) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,4 +334,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-23 20:50:12
+-- Dump completed on 2017-10-24 14:40:41
